@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http"
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, catchError, of } from 'rxjs';
 import { userLogin } from '../../login/user-login.model';
 
 @Injectable({
@@ -18,6 +18,10 @@ export class AuthService {
   constructor(private httpClient: HttpClient) { }
 
   login(data: userLogin) {
-    return this.httpClient.post(`${this.url}/login`, data);
+    return this.httpClient.post(`${this.url}/login`, data).pipe(
+      catchError((error) => {
+        return of(error)
+      })
+    );
   }
 }
