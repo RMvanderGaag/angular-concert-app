@@ -3,6 +3,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { RouterModule } from '@nestjs/core';
 import { AuthModule } from './auth/auth.module';
 import { TokenMiddleware } from './auth/token.middleware';
+import { DataModule } from './data.module';
 
 
 @Module({
@@ -11,11 +12,16 @@ import { TokenMiddleware } from './auth/token.middleware';
       `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PWD}@${process.env.MONGO_HOST}/${process.env.MONGO_DATABASE}?retryWrites=true&w=majority`,
     ),
     AuthModule,
+    DataModule,
     RouterModule.register([
       {
         path: 'auth',
         module: AuthModule,
       },
+      {
+        path: 'data',
+        module: DataModule,
+      }
     ]),
   ],
 
