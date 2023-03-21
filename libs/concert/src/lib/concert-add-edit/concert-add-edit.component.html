@@ -1,0 +1,35 @@
+<div class="container">
+    <form #concertForm="ngForm" (ngSubmit)="onSubmit()">
+        <div class="form-group mb-3">
+            <label for="name">Name</label>
+            <p class="text-danger" *ngIf="!name.valid && name.touched">Please enter a name for the concert</p>
+            <input [(ngModel)]="concert.name" type="text" class="form-control" id="name" #name="ngModel" name="name"
+                required>
+        </div>
+        <div class="form-group mb-3">
+            <label for="location">Location</label>
+            <p class="text-danger" *ngIf="!location.valid && location.touched">Please enter a location for the concert
+            </p>
+            <input [(ngModel)]="concert.location" type="text" class="form-control" id="location" #location="ngModel"
+                name="location" required>
+        </div>
+        <div class="form-group mb-3">
+            <label for="date">Date</label>
+            <p class="text-danger" *ngIf="!date.valid && date.touched">Please enter a date for the concert</p>
+            <input [(ngModel)]="concert.date" type="date" class="form-control" id="date" #date="ngModel" name="date"
+                required>
+        </div>
+        <div class="form-group mb-3">
+            <label for="date">Price</label>
+            <p class="text-danger" *ngIf="!price.valid && price.touched">Please enter a price for the concert</p>
+            <input [(ngModel)]="concert.price" type="number" class="form-control" id="number" #price="ngModel"
+                name="price" required>
+        </div>
+        <div class="form-group mb-3">
+            <label for="eighteenPlus">Eighteen Plus</label>
+            <input [(ngModel)]="concert.eighteenPlus" class="mx-2" type="checkbox" id="eighteenPlus"
+                #eighteenPlus="ngModel" name="eighteenPlus">
+        </div>
+        <button type="submit" [disabled]="!concertForm.valid" class="btn btn-primary">Submit</button>
+    </form>
+</div>

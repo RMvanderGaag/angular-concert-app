@@ -1,4 +1,4 @@
-import { Component, TemplateRef } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { NgbDatepickerModule, NgbOffcanvas, OffcanvasDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -6,11 +6,17 @@ import { NgbDatepickerModule, NgbOffcanvas, OffcanvasDismissReasons } from '@ng-
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
   showLogin: boolean = true;
-  showAccountUI: boolean = false;
+  loggedIn: boolean = false;
 
   constructor(private offcanvas: NgbOffcanvas) { }
+
+  ngOnInit(): void {
+    if (localStorage.getItem("token") != null) {
+      this.loggedIn = true;
+    }
+  }
 
   openOffcanvas(content: TemplateRef<any>) {
     this.offcanvas.open(content, { position: "end" });
@@ -31,6 +37,6 @@ export class NavbarComponent {
   }
 
   showAccount() {
-    this.showAccountUI = true;
+    this.loggedIn = true;
   }
 }
