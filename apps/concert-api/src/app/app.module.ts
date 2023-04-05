@@ -32,7 +32,7 @@ export class AppModule {
   configure(consumer: MiddlewareConsumer) {
     consumer
       .apply(TokenMiddleware)
-      .exclude({ path: 'api/auth/login', method: RequestMethod.POST })
+      .exclude({ path: 'api/auth/login', method: RequestMethod.POST }, { path: 'api/data/concert', method: RequestMethod.GET })
       .forRoutes('*');
   }
 }
