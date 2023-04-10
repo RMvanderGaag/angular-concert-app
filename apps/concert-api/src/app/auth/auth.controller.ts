@@ -1,5 +1,5 @@
 import { Body, Controller, HttpException, HttpStatus, Post } from "@nestjs/common";
-import { TokenString, UserCredentials } from "./auth.model";
+import { ResourceId, TokenString, UserCredentials, UserRegistration } from "./auth.model";
 import { AuthService } from "./auth.service";
 
 @Controller()
@@ -23,4 +23,40 @@ export class AuthController {
             );
         }
     }
+
+    @Post('register')
+    async register(@Body() user: UserRegistration): Promise<ResourceId> {
+        let identityUser = null;
+        try {
+            identityUser = await this.authService.registerUser(user.email, user.password);
+            return {
+                id: await this.authService.createUser(
+                    identityUser.id,
+                    user.name,
+                    user.email,
+                    user.city,
+                    user.birthday,
+                ),
+            };
+
+        } catch (e) {
+            console.log(e);
+
+            if (identityUser != null) {
+                await this.authService.deleteIdentity(identityUser.id);
+            }
+
+            if (e.message == 'Email is already in use') {
+                throw new HttpException(
+                    'Email is already in use',
+                    HttpStatus.BAD_REQUEST,
+                );
+            }
+
+            throw new HttpException('Invalid input', HttpStatus.BAD_REQUEST);
+        }
+    }
+
+
+
 }

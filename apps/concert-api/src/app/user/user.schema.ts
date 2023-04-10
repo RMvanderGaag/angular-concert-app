@@ -20,6 +20,10 @@ export class User {
 
     @Prop({ required: true })
     birthday: Date;
+
+    @Prop({ required: true, default: false })
+    isAdmin: boolean;
+
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

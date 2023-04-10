@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AuthService } from '@angular-concert-project/user';
 import { userLogin } from './user-login.model';
+import { Router } from '@angular/router';
+import { UserService } from '../services/user/user.service';
+import { User } from '../account/user.model';
 
 @Component({
   selector: 'angular-concert-project-login',
@@ -10,8 +13,9 @@ import { userLogin } from './user-login.model';
 export class LoginComponent implements OnInit {
   userLogin: userLogin = new userLogin();
   wrongLogin = false;
+  @Output() showAccount: EventEmitter<any> = new EventEmitter();
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private userService: UserService) { }
 
   ngOnInit(): void {
 
@@ -25,6 +29,10 @@ export class LoginComponent implements OnInit {
       }
       localStorage.setItem('token', JSON.stringify(res.token));
       this.authService.setLoggedInStatus = true;
+      this.userService.getLoggedInUser().subscribe((user: User) => {
+        localStorage.setItem('user', JSON.stringify(user));
+        this.showAccount.emit();
+      });
     });
   }
 }
