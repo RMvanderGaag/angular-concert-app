@@ -12,6 +12,7 @@ import {
 import { UserService } from './user.service';
 import { User } from './user.schema';
 import { InjectToken, Token } from '../auth/token.decorator';
+import { Ticket } from '../ticket/ticket.schema';
 
 @Controller('user')
 export class UserController {

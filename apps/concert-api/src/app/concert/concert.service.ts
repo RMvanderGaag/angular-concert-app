@@ -5,6 +5,8 @@ import { Ticket, TicketDocument } from '../ticket/ticket.schema';
 
 import { ConcertDocument, Concert } from './concert.schema';
 
+import { Neo4jService } from '../neo4j/neo4j.service';
+
 @Injectable()
 export class ConcertService {
     constructor(
@@ -12,16 +14,12 @@ export class ConcertService {
         private concertModel: Model<ConcertDocument>,
         @InjectModel(Ticket.name)
         private ticketModel: Model<TicketDocument>,
+        private neo4jService: Neo4jService,
     ) { }
 
 
     async createConcert(concert: Concert): Promise<Concert> {
-        // let artists: any = await this.artistService.getArtistsById(artistIds);
-        // let artistMongoIds = artists.map((artist) => artist._id);
-        // if (!this.artistService.checkArtistAvailability(artists, concert)) throw new HttpException('Artist already has a concert on this day', HttpStatus.BAD_REQUEST);
-
         const newConcert = new this.concertModel(concert);
-        //this.artistService.bookArtists(artists, newConcert)
         return newConcert.save();
     }
 
@@ -56,9 +54,20 @@ export class ConcertService {
         return this.concertModel.deleteMany({});
     }
 
-    async getConcertTickets(id: string) {
-        let a = this.ticketModel.find({ concert: id });
-        console.log(a);
+    async getRecommendedConcerts(userId: string): Promise<Concert[]> {
+        const concerts = [] as Concert[];
+
+        const recommendedConcerts = await this.neo4jService.singleRead(`match(user:User { id: '${userId}' })-[:Bought]->()-[:BelongsTo]->(c:Concert)-[:PlayedAt]->()<-[:PlayedAt]-(otherConcert:Concert)
+        RETURN otherConcert`);
+
+        for (const concert of recommendedConcerts.records) {
+            console.log(concert);
+            const concertId = concert.get('otherConcert').properties['id'];
+            const concertObject = await this.getConcert(concertId);
+            concerts.push(concertObject);
+        }
+
+        return concerts;
     }
 
 }

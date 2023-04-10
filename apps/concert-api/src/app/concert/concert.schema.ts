@@ -3,7 +3,7 @@ import mongoose, { Document, Schema as MongooseSchema } from 'mongoose';
 import { v4 as uuid } from 'uuid';
 
 import { Artist, ArtistDocument, ArtistSchema } from '../artist/artist.schema';
-import { LocationSchema } from '../location/location.schema';
+import { LocationSchema, Location } from '../location/location.schema';
 
 export type ConcertDocument = Concert & Document;
 
@@ -18,7 +18,7 @@ export class Concert {
     @Prop({ required: true, type: [ArtistSchema] })
     artists: Artist[];
 
-    @Prop({ required: true, type: [LocationSchema] })
+    @Prop({ required: true, type: LocationSchema })
     location: Location;
 
     @Prop({ required: true })

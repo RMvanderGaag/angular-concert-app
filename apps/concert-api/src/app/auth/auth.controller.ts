@@ -29,7 +29,6 @@ export class AuthController {
         let identityUser = null;
         try {
             identityUser = await this.authService.registerUser(user.email, user.password);
-            console.log(identityUser)
             return {
                 id: await this.authService.createUser(
                     identityUser.id,

@@ -8,7 +8,13 @@ export class Location {
     @Prop({ required: true })
     name: string;
 
-    @Prop({ required: true })
+    @Prop({
+        required: true, validate: {
+            validator: (v: string) => {
+                return /([0-9]{4}[A-Z]{2})/.test(v);
+            }, message: (props) => `${props.value} is not a valid postal code!`
+        }
+    })
     address: string;
 
     @Prop({ required: true })

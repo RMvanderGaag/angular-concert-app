@@ -20,7 +20,7 @@ export class Ticket {
     @Prop({ required: true, type: MongooseSchema.Types.ObjectId, ref: 'Concert' })
     concert: Concert;
 
-    @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'User' })
+    @Prop({ required: true, type: MongooseSchema.Types.ObjectId, ref: 'User' })
     user: User;
 }
 
