@@ -17,6 +17,11 @@ const routes: Routes = [
     { path: 'concerts/new', pathMatch: 'full', component: ConcertEditComponent },
     { path: 'concerts/:id', pathMatch: 'full', component: ConcertDetailComponent },
     { path: 'concerts/:id/edit', pathMatch: 'full', component: ConcertEditComponent },
+    
+    { path: 'users', pathMatch: 'full', component: UserOverviewComponent },
+    { path: 'users/new', pathMatch: 'full', component: UserEditComponent },
+    { path: 'users/:id', pathMatch: 'full', component: UserDetailComponent },
+    { path: 'users/:id/edit', pathMatch: 'full', component: UserEditComponent },
 
     { path: 'register', pathMatch: 'full', component: RegisterComponent },
 ];
