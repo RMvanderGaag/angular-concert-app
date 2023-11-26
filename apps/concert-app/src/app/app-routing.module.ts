@@ -9,6 +9,7 @@ import { ConcertDetailComponent } from './pages/concert-page/concert-detail/conc
 import { UserOverviewComponent } from './pages/user-page/user-overview/user-overview.component';
 import { UserEditComponent } from './pages/user-page/user-edit/user-edit.component';
 import { UserDetailComponent } from './pages/user-page/user-detail/user-detail.component';
+import { AboutComponent } from './pages/about-page/about.component';
 
 const routes: Routes = [
     { path: '', pathMatch: 'full', component: HomeComponent },
@@ -23,7 +24,7 @@ const routes: Routes = [
     { path: 'users/:id', pathMatch: 'full', component: UserDetailComponent },
     { path: 'users/:id/edit', pathMatch: 'full', component: UserEditComponent },
 
-    { path: 'register', pathMatch: 'full', component: RegisterComponent },
+    { path: 'about', pathMatch: 'full', component: AboutComponent }
 ];
 
 @NgModule({
