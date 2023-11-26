@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Concert } from '../../../shared/models/concert.model';
 import { ConcertService } from '../../../shared/services/concert/concert.service';
 import { NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
+import { RouterLink, RouterLinkActive, RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-concert-overview',
