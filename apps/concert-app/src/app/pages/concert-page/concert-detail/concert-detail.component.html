@@ -1,0 +1,26 @@
+<div
+    style="background-image: url('../../../../assets/img/concert.jpg'); height: 50vh; background-repeat: no-repeat; background-size: cover; background-position: 0px;">
+    <!-- center text in middle -->
+    <div class="d-flex justify-content-center align-items-center" style="height: 100%;">
+        <div class="text-center">
+            <h1 *ngIf="!concert!.eighteenPlus" class="display-1 text-white">{{concert!.name}}</h1>
+            <h2 class="display-4 text-white">{{concert!.date.toDateString()}}</h2>
+            <button class="btn border-white text-white ticket-btn p-2">Buy ticket</button>
+        </div>
+    </div>
+    <div class="container mt-5 w-100">
+        <div class="mb-5">
+            <div class="bg-dark p-2 rounded mb-3">
+                <h4 class="display-6 text-white">Line-up</h4>
+            </div>
+            <p class="display-6">{{concert!.artists.join(' / ')}}</p>
+        </div>
+
+
+        <div class="mb-5">
+            <div class="bg-dark p-2 rounded mb-3">
+                <h4 class="display-6 text-white">Location</h4>
+            </div>
+            <p class="display-6">{{concert!.location}}</p>
+        </div>
+    </div>

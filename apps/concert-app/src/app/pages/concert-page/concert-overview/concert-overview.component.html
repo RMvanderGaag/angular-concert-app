@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="d-flex justify-content-between mt-3">
+        <h2>Concerts</h2>
+        <a class="btn btn-primary my-2" routerLink="new">Create concert</a>
+    </div>
+    <hr>
+    <div class="row">
+        <div class=" col-md-3 gy-3" *ngFor="let concert of concerts">
+            <div class="card" style="min-height: 15rem;">
+                <div class="card-body d-flex flex-column">
+                    <div class="d-flex justify-content-between">
+                        <h5 class="card-title justify-content-between">{{concert.name}}</h5>
+                        <!-- bootstrap dropdown menu -->
+                        <div class="dropdown">
+                            <button class="btn dropdown-toggle" type="button" id="concertDropdown"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="concertDropdown">
+                                <li><a class="dropdown-item" routerLink="{{concert.id}}/edit">Edit</a></li>
+                                <li><a (click)="deleteConcert(concert.id)" class="dropdown-item btn">Delete</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <h6 class="card-subtitle mb-2 text-muted">{{concert.date.toDateString()}}</h6>
+                    <p class="card-text">Location: <b>{{concert.location}}</b></p>
+                    <p class="card-text" *ngIf="concert.artists.length <= 2">Artists: <a
+                            class="underline text-dark">{{concert.artists}}</a> </p>
+                    <p class="card-text" *ngIf="concert.artists.length > 2">Artists: <a
+                            class="underline text-dark">{{concert.artists.slice(0,2)}} </a>
+                        and {{ concert.artists.length - 2 }} more!
+                    </p>
+                    <a routerLink="{{concert.id}}" class="btn btn-primary mt-auto">Information</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

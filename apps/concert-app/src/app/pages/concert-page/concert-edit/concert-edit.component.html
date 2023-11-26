@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="d-flex justify-content-between mt-3">
+        <h2 *ngIf="!isEdit">Create concert</h2>
+        <h2 *ngIf="isEdit">Edit concert</h2>
+        <a class="btn btn-primary my-2" routerLink="../../">Return to overview</a>
+    </div>
+    <hr>
+    <form #concertForm="ngForm" (ngSubmit)="concertForm.form.valid && onSubmit(concertForm)">
+        <input *ngIf="isEdit" type="hidden" id="id" name="id" [(ngModel)]="concert!.id">
+        <div class="form-group my-3">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Enter concert name"
+                #concertName="ngModel" [(ngModel)]="concert!.name" required>
+        </div>
+        <div class="form-group my-3">
+            <label for="date">Date</label>
+            <input type="text" class="form-control" id="date" name="date" placeholder="Enter the date of the concert"
+                (ngModel)="concert!.date" [ngModel]="concert!.date | date: 'MM/dd/yyyy'">
+        </div>
+        <div class="form-group my-3">
+            <label for="name">Location</label>
+            <input type="text" class="form-control" id="location" name="location"
+                placeholder="Enter the location of the concert" #concertLocation="ngModel"
+                [(ngModel)]="concert!.location" required>
+        </div>
+        <div class="form-check my-3">
+            <input type="checkbox" class="form-check-input" id="eighteenPlus" name="eighteenPlus"
+                #concertEighteenPlus="ngModel" [(ngModel)]="concert!.eighteenPlus" [checked]="concert!.eighteenPlus">
+            <label for="eighteenPlus">18 plus</label>
+        </div>
+        <div class=" form-group my-3">
+            <label for="artists">Artists</label>
+            <input type="text" class="form-control" id="artists" name="artists"
+                placeholder="Enter the artists seperated by a comma" #concertLocation="ngModel"
+                [(ngModel)]="concert!.artists" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>

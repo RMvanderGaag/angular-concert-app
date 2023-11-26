@@ -1,46 +1,10 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse container" id="navbarNavDropdown">
-        <ul class="navbar-nav">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Tickets</a>
-            </li>
-        </ul>
-        <ul class="navbar-nav">
-            <li class="nav-item active">
-                <button class="btn btn-primary" (click)="openOffcanvas(content)">Login/register</button>
-            </li>
-        </ul>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <a class="nav-item nav-link" href="#">Home</a>
+            <a class="nav-item nav-link" routerLink="users">Users</a>
+            <a class="nav-item nav-link" routerLink="concerts">Concerts</a>
+            <a class="nav-item nav-link" routerLink="about">About</a>
+        </div>
     </div>
 </nav>
-
-<ng-template #content let-offcanvas>
-    <div *ngIf="!showAccountUI">
-        <div class="offcanvas-header">
-            <div class="d-flex justify-content-between w-100">
-                <button id="loginBtn" class="btn btn-light active w-50" (click)="changeOC(true)">Login</button>
-                <button id="registerBtn" class="btn btn-light w-50" (click)="changeOC(false)">Register</button>
-            </div>
-        </div>
-        <div class="offcanvas-body">
-            <angular-concert-project-login (showAccount)="showAccount()"
-                *ngIf="showLogin"></angular-concert-project-login>
-            <angular-concert-project-register (showAccount)="showAccount()"
-                *ngIf="!showLogin"></angular-concert-project-register>
-        </div>
-    </div>
-    <div *ngIf="showAccountUI">
-        <div class="offcanvas-header">
-            <h3>Account</h3>
-        </div>
-        <div class="offcanvas-body">
-            <angular-concert-project-account></angular-concert-project-account>
-        </div>
-    </div>
-</ng-template>
