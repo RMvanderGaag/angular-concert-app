@@ -1,72 +1,91 @@
 import { Injectable } from '@angular/core';
-import { Concert } from '../../models/concert.model';
+import { IConcert } from '../../models/concert.model';
+import { HttpClient } from '@angular/common/http';
+import { ILocation } from '../../models/location.model';
+import { IArtist } from '../../models/artist.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ConcertService {
-  readonly concerts: Concert[] = [
+  constructor(private httpClient: HttpClient){}
+
+  private location: ILocation = {
+    address: "Kerkstraat 1",
+    city: "Breda",
+    name: "De kerk",
+    capacity: 1000
+  }
+
+  private artists: IArtist[] = [
     {
-      id: 0,
-      name: "Boom bam",
-      eighteenPlus: false,
-      location: "Breda",
-      date: new Date("12/12/2022"),
-      artists: ["Piet", "Frank", "Jan"]
+      id: "1",
+      name: "Piet",
+      genre: "Hardcore",
+      birthday: new Date("12/12/2000"),
+      country: 't',
+      image: ''
     },
     {
-      id: 1,
-      name: "Dikke fissa",
-      eighteenPlus: true,
-      location: "Amsterdam",
-      date: new Date("05/09/2023"),
-      artists: ["Wim", "Hans"]
-    },
-    {
-      id: 2,
-      name: "Sinterklaas feest",
-      eighteenPlus: false,
-      location: "Oosterhout",
-      date: new Date("12/05/2022"),
-      artists: ["Stroopwafel piet", "Sinterklaar", "Coole piet", "Piet"]
-    },
-    {
-      id: 3,
-      name: "Feestje",
-      eighteenPlus: true,
-      location: "Texel",
-      date: new Date("01/01/2025"),
-      artists: ["Dirk"]
-    },
-    {
-      id: 4,
-      name: "AC/DC tribuut concert",
-      eighteenPlus: false,
-      location: "Breda",
-      date: new Date("08/08/2024"),
-      artists: ["Jan-leen", "Ria", "Sanne", "Marjolein"]
-    },
+      id: "2",
+      name: "Frank",
+      genre: "Hardstyle",
+      birthday: new Date("12/12/2000"),
+      country: 't',
+      image: ''
+    }
   ]
 
-  constructor() { }
+  readonly concerts: IConcert[] = [
+    {
+      id: "0",
+      name: "Boom bam",
+      location: this.location,
+      date: new Date("12/12/2022"),
+      artists:this.artists
+    },
+    {
+      id: "0",
+      name: "Dikke fissa",
+      location: this.location,
+      date: new Date("05/09/2023"),
+      artists:this.artists
+    },
+    {
+      id: "0",
+      name: "Sinterklaas feest",
+      location: this.location,
+      date: new Date("12/05/2022"),
+      artists:this.artists
+    },
+    {
+      id: "0",
+      name: "Feestje",
+      location: this.location,
+      date: new Date("01/01/2025"),
+      artists:this.artists
+    }
+  ]
 
-  getConcerts(): Concert[] {
-    return this.concerts;
+  getConcerts(): Observable<IConcert[]> {
+
+    return this.httpClient.get<IConcert[]>('http://localhost:3333/api/data/concert');
   }
 
-  getConcertById(id: number): Concert | null {
-    return this.concerts.find(c => c.id === id) ?? null;
+  getConcertById(id: string): Observable<IConcert> {
+    return this.httpClient.get<IConcert>('http://localhost:3333/api/data/concert/' + id);
   }
 
-  deleteConcert(id: number): void {
+  deleteConcert(id: string): void {
     this.concerts.splice(this.concerts.findIndex(c => c.id === id), 1);
   }
 
-  addConcert(concert: Concert): void {
+  addConcert(concert: IConcert): void {
     this.concerts.push(concert);
   }
 
-  updateConcert(concert: Concert): void {
+  updateConcert(concert: IConcert): void {
     this.concerts[this.concerts.findIndex(c => c.id === concert.id)] = concert;
   }
 }

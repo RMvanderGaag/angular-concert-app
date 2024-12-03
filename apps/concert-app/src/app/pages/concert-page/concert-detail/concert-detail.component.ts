@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Concert } from '../../../shared/models/concert.model';
+import { IConcert } from '../../../shared/models/concert.model';
 import { ConcertService } from '../../../shared/services/concert/concert.service';
 
 @Component({
@@ -9,13 +9,15 @@ import { ConcertService } from '../../../shared/services/concert/concert.service
   styleUrls: ['./concert-detail.component.css']
 })
 export class ConcertDetailComponent implements OnInit {
-  concert: Concert | null = null;
+  concert: IConcert | undefined;
 
   constructor(private concertService: ConcertService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((c) => {
-      this.concert = this.concertService.getConcertById(Number(c.get('id')));
+      this.concertService.getConcertById(c.get("id")!).subscribe((concert: any) => {
+        this.concert = concert;
+      });
     })
   }
 

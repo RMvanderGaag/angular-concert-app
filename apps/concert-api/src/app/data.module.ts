@@ -16,6 +16,8 @@ import { TicketService } from './ticket/ticket.service';
 import { UserController } from './user/user.controller';
 import { User, UserSchema } from './user/user.schema';
 import { UserService } from './user/user.service';
+import { ArtistController } from './artist/artist.controller';
+import { ArtistService } from './artist/artist.service';
 
 @Module({
     imports: [
@@ -30,14 +32,16 @@ import { UserService } from './user/user.service';
     controllers: [
         UserController,
         concertController,
-        TicketController
+        TicketController,
+        ArtistController
     ],
     providers: [
         UserService,
         AuthService,
         ConcertService,
-        TicketService
+        TicketService,
+        ArtistService
     ],
-    exports: [UserService, ConcertService, TicketService],
+    exports: [UserService, ConcertService, TicketService, ArtistService],
 })
 export class DataModule { }

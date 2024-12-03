@@ -1,8 +1,10 @@
-export interface Concert {
-    id: number;
+import { IArtist } from "./artist.model";
+import { ILocation } from "./location.model";
+
+export interface IConcert {
+    id: string;
     name: string;
     date: Date;
-    eighteenPlus: boolean;
-    location: string;
-    artists: Array<string>;
+    location: ILocation | undefined;
+    artists: Array<IArtist>;
 }

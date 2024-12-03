@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="d-flex justify-content-between mt-3">
+        <h2 *ngIf="!isEdit">Create artist</h2>
+        <h2 *ngIf="isEdit">Edit artist</h2>
+    </div>
+    <hr>
+    <form #artistForm="ngForm" (ngSubmit)="artistForm.form.valid && onSubmit(artistForm)">
+        <input *ngIf="isEdit" type="hidden" id="id" name="id" [(ngModel)]="artist!.id">
+        <div class="form-group my-3">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Enter artist name"
+                #artistName="ngModel" [(ngModel)]="artist!.name" required>
+        </div>
+        <div class="form-group my-3">
+            <label for="genre">Genre</label>
+            <input type="text" class="form-control" id="genre" name="genre" placeholder="Enter genre"
+                #artistGenre="ngModel" [(ngModel)]="artist!.genre" required>
+        </div>
+        <div class="form-group my-3">
+            <label for="birthday">Birthday</label>
+            <input type="date" class="form-control" id="birthday" name="birthday"
+                [(ngModel)]="artist!.birthday" #artistBirthday="ngModel" required>
+        </div>
+        <div class="form-group my-3">
+            <label for="country">Country</label>
+            <input type="text" class="form-control" id="country" name="country" placeholder="Enter country"
+                #artistCountry="ngModel" [(ngModel)]="artist!.country" required>
+        </div>
+        <div class="form-group my-3">
+            <label for="image">Profile Picture</label>
+            <input type="file" class="form-control" id="image" name="image" accept="image/*"
+                (change)="onFileSelected($event)" [(ngModel)]="imgSrc">
+        </div>
+        <div *ngIf="base64Img" class="my-3">
+            <h5>Current Profile Picture</h5>
+            <img [src]="base64Img" alt="Image" class="img-thumbnail" style="max-width: 200px;">
+        </div>
+        <button type="submit" class="btn btn-secondary my-3" [disabled]="!artistForm.form.valid">
+            {{ isEdit ? 'Update Artist' : 'Create Artist' }}
+        </button>
+    </form>
+</div>
