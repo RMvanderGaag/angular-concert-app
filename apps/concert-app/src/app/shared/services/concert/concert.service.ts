@@ -77,15 +77,15 @@ export class ConcertService {
     return this.httpClient.get<IConcert>('http://localhost:3333/api/data/concert/' + id);
   }
 
-  deleteConcert(id: string): void {
-    this.concerts.splice(this.concerts.findIndex(c => c.id === id), 1);
+  deleteConcert(id: string): Observable<IConcert> {
+    return this.httpClient.delete<IConcert>('http://localhost:3333/api/data/concert/' + id);
   }
 
-  addConcert(concert: IConcert): void {
-    this.concerts.push(concert);
+  addConcert(concert: IConcert): Observable<IConcert> {
+    return this.httpClient.post<IConcert>('http://localhost:3333/api/data/concert/', concert);
   }
 
-  updateConcert(concert: IConcert): void {
-    this.concerts[this.concerts.findIndex(c => c.id === concert.id)] = concert;
+  updateConcert(concert: IConcert, id: string): Observable<IConcert> {
+    return this.httpClient.put<IConcert>('http://localhost:3333/api/data/concert/' + id, concert);
   }
 }

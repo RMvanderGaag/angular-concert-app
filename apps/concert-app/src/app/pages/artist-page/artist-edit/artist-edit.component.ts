@@ -15,7 +15,7 @@ export class ArtistEditComponent implements OnInit {
   artist: any = {
     name: '',
     genre: '',
-    birthday: new Date(),
+    birthday: new Date().toISOString().split('T')[0],
     country: '',
     image: null
   };
@@ -62,6 +62,14 @@ export class ArtistEditComponent implements OnInit {
   
 
   onSubmit(artistForm: NgForm): void {
+    if (artistForm.invalid) {
+      Object.keys(artistForm.controls).forEach(field => {
+        const control = artistForm.controls[field];
+        control.markAsTouched({ onlySelf: true });
+      });
+      return;
+    }
+
     if(this.base64Img != undefined){
       this.artist.image = this.base64Img;
     }else{

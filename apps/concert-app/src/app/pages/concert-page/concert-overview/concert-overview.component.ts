@@ -16,13 +16,18 @@ export class ConcertOverviewComponent implements OnInit {
   constructor(private concertService: ConcertService) { }
 
   ngOnInit(): void {
+    this.getAllConcerts();
+  }
+
+  getAllConcerts() {
     this.concertService.getConcerts().subscribe((concert: any) => {
       this.concerts = concert;
     });
-    console.log(this.concerts);
   }
 
   deleteConcert(id: string): void {
-    this.concertService.deleteConcert(id);
+    this.concertService.deleteConcert(id).subscribe(() => {
+      this.getAllConcerts();
+    });
   }
 }

@@ -1,30 +1,41 @@
 <div class="container">
     <div class="d-flex justify-content-between mt-3">
-        <h2 *ngIf="!isEdit">Create artist</h2>
-        <h2 *ngIf="isEdit">Edit artist</h2>
+        <h2 *ngIf="!isEdit">Create Artist</h2>
+        <h2 *ngIf="isEdit">Edit Artist</h2>
     </div>
     <hr>
-    <form #artistForm="ngForm" (ngSubmit)="artistForm.form.valid && onSubmit(artistForm)">
-        <input *ngIf="isEdit" type="hidden" id="id" name="id" [(ngModel)]="artist!.id">
+    <form #artistForm="ngForm" (ngSubmit)="onSubmit(artistForm)">
         <div class="form-group my-3">
             <label for="name">Name</label>
             <input type="text" class="form-control" id="name" name="name" placeholder="Enter artist name"
-                #artistName="ngModel" [(ngModel)]="artist!.name" required>
+                #artistName="ngModel" [(ngModel)]="artist.name" required>
+            <div *ngIf="artistName.touched && artistName.invalid" class="text-danger">
+                Name is required.
+            </div>
         </div>
         <div class="form-group my-3">
             <label for="genre">Genre</label>
             <input type="text" class="form-control" id="genre" name="genre" placeholder="Enter genre"
-                #artistGenre="ngModel" [(ngModel)]="artist!.genre" required>
+                #artistGenre="ngModel" [(ngModel)]="artist.genre" required>
+            <div *ngIf="artistGenre.touched && artistGenre.invalid" class="text-danger">
+                Genre is required.
+            </div>
         </div>
         <div class="form-group my-3">
             <label for="birthday">Birthday</label>
             <input type="date" class="form-control" id="birthday" name="birthday"
-                [(ngModel)]="artist!.birthday" #artistBirthday="ngModel" required>
+                [(ngModel)]="artist.birthday" #artistBirthday="ngModel" required>
+            <div *ngIf="artistBirthday.touched && artistBirthday.invalid" class="text-danger">
+                Birthday is required.
+            </div>
         </div>
         <div class="form-group my-3">
             <label for="country">Country</label>
             <input type="text" class="form-control" id="country" name="country" placeholder="Enter country"
-                #artistCountry="ngModel" [(ngModel)]="artist!.country" required>
+                #artistCountry="ngModel" [(ngModel)]="artist.country" required>
+            <div *ngIf="artistCountry.touched && artistCountry.invalid" class="text-danger">
+                Country is required.
+            </div>
         </div>
         <div class="form-group my-3">
             <label for="image">Profile Picture</label>
@@ -35,8 +46,11 @@
             <h5>Current Profile Picture</h5>
             <img [src]="base64Img" alt="Image" class="img-thumbnail" style="max-width: 200px;">
         </div>
-        <button type="submit" class="btn btn-secondary my-3" [disabled]="!artistForm.form.valid">
-            {{ isEdit ? 'Update Artist' : 'Create Artist' }}
-        </button>
+        <div class="d-flex justify-content-end">
+            <button type="submit" class="btn btn-primary my-3">
+                {{ isEdit ? 'Update Artist' : 'Create Artist' }}
+            </button>
+        </div>
     </form>
+    
 </div>

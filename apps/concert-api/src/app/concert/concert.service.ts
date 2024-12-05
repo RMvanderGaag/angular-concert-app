@@ -44,7 +44,7 @@ export class ConcertService {
     }
 
     async getConcert(id: string): Promise<Concert> {
-        const concert = this.concertModel.findOne({ id: id }).populate('artists', 'name').exec();
+        const concert = this.concertModel.findOne({ id: id }).populate('artists', 'id name').exec();
         if (concert == null) {
             throw new HttpException('Concert not found', HttpStatus.NOT_FOUND);
         }

@@ -3,24 +3,44 @@
         <a class="navbar-brand fw-bold" href="#">
             <i class="bi bi-music-note-list"></i> ConcertApp
         </a>
-        <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-        >
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div id="navbarNavAltMarkup">
             <div class="navbar-nav ms-auto">
-                <a class="nav-item nav-link active" href="#">Home</a>
-                <a class="nav-item nav-link" routerLink="users">Users</a>
-                <a class="nav-item nav-link" routerLink="concerts">Concerts</a>
-                <a class="nav-item nav-link" routerLink="artists">Artists</a>
-                <a class="nav-item nav-link" routerLink="about">About</a>
+                <a 
+                    class="nav-item nav-link" 
+                    routerLink="/" 
+                    routerLinkActive="active" 
+                    [routerLinkActiveOptions]="{ exact: true }"
+                >
+                    Home
+                </a>
+                <a 
+                    class="nav-item nav-link" 
+                    routerLink="/users" 
+                    routerLinkActive="active"
+                >
+                    Users
+                </a>
+                <a 
+                    class="nav-item nav-link" 
+                    routerLink="/concerts" 
+                    routerLinkActive="active"
+                >
+                    Concerts
+                </a>
+                <a 
+                    class="nav-item nav-link" 
+                    routerLink="/artists" 
+                    routerLinkActive="active"
+                >
+                    Artists
+                </a>
+                <a 
+                    class="nav-item nav-link" 
+                    routerLink="/about" 
+                    routerLinkActive="active"
+                >
+                    About
+                </a>
             </div>
         </div>
     </div>

@@ -37,7 +37,7 @@ export class concertController {
     }
 
     @Post()
-    @UseGuards(AdminGuard)
+    // @UseGuards(AdminGuard)
     async createConcert(@Body() concert: Concert): Promise<Concert> {
         return await this.concertService.createConcert(concert);
     }

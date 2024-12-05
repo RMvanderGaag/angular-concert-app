@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { IConcert } from '../../../shared/models/concert.model';
 import { ConcertService } from '../../../shared/services/concert/concert.service';
 import { IArtist } from '../../../shared/models/artist.model';
+import { ArtistService } from '../../../shared/services/artist/artist.service';
 
 @Component({
   selector: 'app-concert-edit',
@@ -11,75 +12,84 @@ import { IArtist } from '../../../shared/models/artist.model';
   styleUrls: ['./concert-edit.component.css']
 })
 export class ConcertEditComponent implements OnInit {
-  concert: IConcert | undefined;
+  concert: any = {
+    name: '',
+    date: new Date().toISOString().split('T')[0],
+    price: 0,
+    location: {
+      address: '',
+      city: '',
+      name: '',
+      capacity: 0
+    }
+  };
   isEdit: boolean = false;
-  artists: Array<{id: string; name: string; genre: string; birthday: Date }> = [{id: '', name: '', genre: '', birthday: new Date() }];
-  collapsedArtists: boolean[] = [];
+  artists: IArtist[] = [];
+  selectedArtists: any[] = [];
+  validArtistAmount: boolean = true;
 
-  constructor(private concertService: ConcertService, private router: Router, private route: ActivatedRoute) { }
+  constructor(
+    private concertService: ConcertService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private artistService: ArtistService
+  ) {}
 
   ngOnInit(): void {
-    // this.route.paramMap.subscribe((params) => {
-    //   let id = params.get("id");
-    //   if (id) {
-    //     this.isEdit = true;
+    this.artistService.getArtists().subscribe((result) => {
+      this.artists = result;
+    });
 
-    //     this.concertService.getConcertById(id).subscribe((concert) => {
-    //       this.concert = concert;
-    //     });
+    this.route.paramMap.subscribe((params) => {
+      const id = params.get('id');
+      if (id) {
+        this.isEdit = true;
+        this.concertService.getConcertById(id).subscribe((concert) => {
+          this.concert = concert;
+          this.concert.date = this.formatDate(this.concert.date)
+          if (concert && concert.artists) {
+            this.selectedArtists = concert.artists.map((artist: any) => artist.id);
+          }
+        });
+      }
+    });
+  }
 
-    //   } else {
-    //     this.isEdit = false;
-    //     this.concert = {
-    //       id: "",
-    //       name: "",
-    //       artists: this.artists,
-    //       date: new Date(),
-    //       location: {
-    //         name: "",
-    //         city: "",
-    //         address: "",
-    //         capacity: 0,
-    //       },
-    //     };
-    //   }
-    // });
+  formatDate(dateString: string): string {
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
+    return `${year}-${month}-${day}`;
   }
 
   onSubmit(concertForm: NgForm): void {
-    console.log(concertForm.value);
-    if (this.isEdit) {
-      let editConcert = {
-        ...concertForm.value,
-        artists: concertForm.value.artists.includes(",") ? concertForm.value.artists.split(",") : [concertForm.value.artists],
-        date: new Date(concertForm.value.date)
-      }
-      this.concertService.updateConcert(editConcert);
-    } else {
-      let newConcert = {
-        ...concertForm.value,
-        artists: concertForm.value.artists.split(",").length > 1 ? concertForm.value.artists.split(",") : [concertForm.value.artists],
-        date: new Date(concertForm.value.date)
+    this.validArtistAmount = this.selectedArtists.length > 0;
+    if (concertForm.invalid || !this.validArtistAmount) {
+      Object.keys(concertForm.controls).forEach(field => {
+        const control = concertForm.controls[field];
+        control.markAsTouched({ onlySelf: true });
+      });
+      return;
+    }
+    if (concertForm.valid) {
+      const updatedConcert = {
+        ...this.concert,
+        artists: this.selectedArtists.map((id) =>
+          this.artists.find((artist) => artist.id === id)
+        ),
+        date: new Date(concertForm.value.date),
       };
 
-      this.concertService.addConcert(newConcert);
+      if (this.isEdit) {
+        this.concertService.updateConcert(updatedConcert, updatedConcert.id).subscribe(() => {
+          this.router.navigate(['/concerts']);
+        });
+      } else {
+        this.concertService.addConcert(updatedConcert).subscribe(() => {
+          this.router.navigate(['/concerts']);
+        });
+      }
     }
-
-    this.router.navigate(['concerts']);
   }
-
-  toggleCollapse(index: number) {
-    this.collapsedArtists[index] = !this.collapsedArtists[index];
-  }
-
-  addArtist(): void {
-    this.artists.push({id: '', name: '', genre: '', birthday: new Date()});
-  
-    this.collapsedArtists.push(false)
-  }
-
-  removeArtist(index: number) {
-    this.artists.splice(index, 1);
-    this.collapsedArtists.splice(index, 1);
-}
 }
