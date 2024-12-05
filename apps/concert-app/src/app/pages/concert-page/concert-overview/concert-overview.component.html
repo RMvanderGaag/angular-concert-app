@@ -21,14 +21,10 @@
                             </ul>
                         </div>
                     </div>
-                    <h6 class="card-subtitle mb-2 text-muted">{{concert.date.toDateString()}}</h6>
-                    <p class="card-text">Location: <b>{{concert.location}}</b></p>
-                    <p class="card-text" *ngIf="concert.artists.length <= 2">Artists: <a
-                            class="underline text-dark">{{concert.artists}}</a> </p>
-                    <p class="card-text" *ngIf="concert.artists.length > 2">Artists: <a
-                            class="underline text-dark">{{concert.artists.slice(0,2)}} </a>
-                        and {{ concert.artists.length - 2 }} more!
-                    </p>
+                    <h6 class="card-subtitle mb-2 text-muted">{{concert.date | date: 'dd/MM/yyyy'}}</h6>
+                    <p class="card-text">Location: <b>{{concert.location!.name}}</b></p>
+                    <p class="card-text">Artists amount: <b>{{ concert.artists.length }}</b></p>
+  
                     <a routerLink="{{concert.id}}" class="btn btn-primary mt-auto">Information</a>
                 </div>
             </div>

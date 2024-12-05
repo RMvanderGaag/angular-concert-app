@@ -24,11 +24,11 @@ export class concertController {
         return await this.concertService.getConcerts();
     }
 
-    @Get('neo/recommended')
-    async getRecommendedConcerts(@InjectToken() token: Token): Promise<Concert[]> {
-        console.log(token);
-        return await this.concertService.getRecommendedConcerts(token.id);
-    }
+    // @Get('neo/recommended')
+    // async getRecommendedConcerts(@InjectToken() token: Token): Promise<Concert[]> {
+    //     console.log(token);
+    //     return await this.concertService.getRecommendedConcerts(token.id);
+    // }
 
 
     @Get(':id')
@@ -37,19 +37,19 @@ export class concertController {
     }
 
     @Post()
-    @UseGuards(AdminGuard)
+    // @UseGuards(AdminGuard)
     async createConcert(@Body() concert: Concert): Promise<Concert> {
         return await this.concertService.createConcert(concert);
     }
 
     @Put(':id')
-    @UseGuards(AdminGuard)
+    // @UseGuards(AdminGuard)
     async updateConcert(@Param('id') id: string, @Body() concert: Concert): Promise<Concert> {
         return await this.concertService.updateConcert(id, concert);
     }
 
     @Delete(':id')
-    @UseGuards(AdminGuard)
+    // @UseGuards(AdminGuard)
     async deleteConcert(@Param('id') id: string): Promise<Concert> {
         return await this.concertService.deleteConcert(id);
     }

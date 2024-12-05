@@ -3,8 +3,8 @@
     <!-- center text in middle -->
     <div class="d-flex justify-content-center align-items-center" style="height: 100%;">
         <div class="text-center">
-            <h1 *ngIf="!concert!.eighteenPlus" class="display-1 text-white">{{concert!.name}}</h1>
-            <h2 class="display-4 text-white">{{concert!.date.toDateString()}}</h2>
+            <h1 class="display-1 text-white">{{concert!.name}}</h1>
+            <h2 class="display-4 text-white">{{concert!.date | date: 'dd/MM/yyyy'}}</h2>
             <button class="btn border-white text-white ticket-btn p-2">Buy ticket</button>
         </div>
     </div>
@@ -13,7 +13,11 @@
             <div class="bg-dark p-2 rounded mb-3">
                 <h4 class="display-6 text-white">Line-up</h4>
             </div>
-            <p class="display-6">{{concert!.artists.join(' / ')}}</p>
+            <div>
+                <ul *ngFor="let artist of concert!.artists">
+                    <li class="display-6">{{artist.name}}</li>
+                </ul>
+            </div>
         </div>
 
 
@@ -21,6 +25,6 @@
             <div class="bg-dark p-2 rounded mb-3">
                 <h4 class="display-6 text-white">Location</h4>
             </div>
-            <p class="display-6">{{concert!.location}}</p>
+            <p class="display-6">{{concert!.location!.name}}</p>
         </div>
     </div>

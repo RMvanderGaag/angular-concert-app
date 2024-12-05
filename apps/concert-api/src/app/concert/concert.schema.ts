@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import mongoose, { Document, Schema as MongooseSchema } from 'mongoose';
+import mongoose, { Document, Types, Schema as MongooseSchema } from 'mongoose';
 import { v4 as uuid } from 'uuid';
 
 import { Artist, ArtistDocument, ArtistSchema } from '../artist/artist.schema';
@@ -15,7 +15,7 @@ export class Concert {
     @Prop({ required: true })
     name: string;
 
-    @Prop({ required: true, type: [ArtistSchema] })
+    @Prop({ type: [{ type: MongooseSchema.Types.ObjectId, ref: 'Artist'}], required: true })
     artists: Artist[];
 
     @Prop({ required: true, type: LocationSchema })

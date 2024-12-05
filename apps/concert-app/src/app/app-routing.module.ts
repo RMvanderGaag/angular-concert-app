@@ -10,6 +10,9 @@ import { UserOverviewComponent } from './pages/user-page/user-overview/user-over
 import { UserEditComponent } from './pages/user-page/user-edit/user-edit.component';
 import { UserDetailComponent } from './pages/user-page/user-detail/user-detail.component';
 import { AboutComponent } from './pages/about-page/about.component';
+import { ArtistOverviewComponent } from './pages/artist-page/artist-overview/artist-overview.component';
+import { ArtistEditComponent } from './pages/artist-page/artist-edit/artist-edit.component';
+import { ArtistDetailComponent } from './pages/artist-page/artist-detail/artist-detail.component';
 
 const routes: Routes = [
     { path: '', pathMatch: 'full', component: HomeComponent },
@@ -23,6 +26,12 @@ const routes: Routes = [
     { path: 'users/new', pathMatch: 'full', component: UserEditComponent },
     { path: 'users/:id', pathMatch: 'full', component: UserDetailComponent },
     { path: 'users/:id/edit', pathMatch: 'full', component: UserEditComponent },
+
+    { path: 'artists', pathMatch: 'full', component: ArtistOverviewComponent },
+    { path: 'artists/new', pathMatch: 'full', component: ArtistEditComponent },
+    { path: 'artists/:id', pathMatch: 'full', component: ArtistDetailComponent },
+    { path: 'artists/:id/edit', pathMatch: 'full', component: ArtistEditComponent },
+
 
     { path: 'about', pathMatch: 'full', component: AboutComponent }
 ];

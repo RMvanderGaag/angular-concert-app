@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="d-flex justify-content-between mt-3">
+        <h2>Artist Details</h2>
+        <a class="btn btn-primary my-2" routerLink="../">Return to Overview</a>
+    </div>
+    <hr>
+    <div *ngIf="artist; else noArtist">
+        <div class="row my-4">
+            <div class="col-md-4">
+                <h5>Profile Picture</h5>
+                <img [src]="imageUrl" alt="Artist Image" 
+                    class="img-thumbnail" style="max-width: 100%;">
+            </div>
+            <div class="col-md-8">
+                <h3>{{ artist.name }}</h3>
+                <p><strong>Genre:</strong> {{ artist.genre }}</p>
+                <p><strong>Birthday:</strong> {{ artist.birthday | date: 'longDate' }}</p>
+                <p><strong>Country:</strong> {{ artist.country }}</p>
+            </div>
+        </div>
+    </div>
+    <ng-template #noArtist>
+        <p class="text-danger">Artist information is unavailable.</p>
+    </ng-template>
+</div>

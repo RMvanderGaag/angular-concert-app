@@ -1,39 +1,87 @@
 <div class="container">
     <div class="d-flex justify-content-between mt-3">
-        <h2 *ngIf="!isEdit">Create concert</h2>
-        <h2 *ngIf="isEdit">Edit concert</h2>
-        <a class="btn btn-primary my-2" routerLink="../../">Return to overview</a>
+        <h2 *ngIf="!isEdit">Create Concert</h2>
+        <h2 *ngIf="isEdit">Edit Concert</h2>
     </div>
     <hr>
-    <form #concertForm="ngForm" (ngSubmit)="concertForm.form.valid && onSubmit(concertForm)">
+    <form #concertForm="ngForm" (ngSubmit)="onSubmit(concertForm)">
         <input *ngIf="isEdit" type="hidden" id="id" name="id" [(ngModel)]="concert!.id">
+        <h3>Concert details</h3>
         <div class="form-group my-3">
             <label for="name">Name</label>
             <input type="text" class="form-control" id="name" name="name" placeholder="Enter concert name"
-                #concertName="ngModel" [(ngModel)]="concert!.name" required>
+                #concertName="ngModel" [(ngModel)]="concert.name" required>
+            <div *ngIf="concertName.touched && concertName.invalid" class="text-danger">
+                Name is required.
+            </div>
         </div>
         <div class="form-group my-3">
             <label for="date">Date</label>
             <input type="text" class="form-control" id="date" name="date" placeholder="Enter the date of the concert"
-                (ngModel)="concert!.date" [ngModel]="concert!.date | date: 'MM/dd/yyyy'">
+                [(ngModel)]="concert.date" #concertDate="ngModel" required>
         </div>
         <div class="form-group my-3">
-            <label for="name">Location</label>
-            <input type="text" class="form-control" id="location" name="location"
-                placeholder="Enter the location of the concert" #concertLocation="ngModel"
-                [(ngModel)]="concert!.location" required>
+            <label for="price">Price</label>
+            <input type="text" class="form-control" id="price" name="price" placeholder="Enter concert price"
+                #concertPrice="ngModel" [(ngModel)]="concert.price" required>
+            <div *ngIf="concertPrice.touched && concertPrice.invalid" class="text-danger">
+                Price is required.
+            </div>
         </div>
-        <div class="form-check my-3">
-            <input type="checkbox" class="form-check-input" id="eighteenPlus" name="eighteenPlus"
-                #concertEighteenPlus="ngModel" [(ngModel)]="concert!.eighteenPlus" [checked]="concert!.eighteenPlus">
-            <label for="eighteenPlus">18 plus</label>
+        <h3>Location details</h3>
+        <div class="row my-3">
+            <div class="form-group col-md-6">
+                <label for="locationName">Location Name</label>
+                <input type="text" class="form-control" id="locationName" name="locationName" placeholder="Enter location name"
+                    [(ngModel)]="concert.location!.name" #locationName="ngModel" required>
+                <div *ngIf="locationName.touched && locationName.invalid" class="text-danger">
+                    Location Name is required.
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="address">Address</label>
+                <input type="text" class="form-control" id="address" name="address" placeholder="Enter address"
+                    [(ngModel)]="concert!.location.address" #address="ngModel" required>
+                <div *ngIf="address.touched && address.invalid" class="text-danger">
+                    Address is required.
+                </div>
+            </div>
         </div>
-        <div class=" form-group my-3">
-            <label for="artists">Artists</label>
-            <input type="text" class="form-control" id="artists" name="artists"
-                placeholder="Enter the artists seperated by a comma" #concertLocation="ngModel"
-                [(ngModel)]="concert!.artists" required>
+        <div class="row my-3">
+            <div class="form-group col-md-6">
+                <label for="city">City</label>
+                <input type="text" class="form-control" id="city" name="city" placeholder="Enter city"
+                    [(ngModel)]="concert.location.city" #city="ngModel" required>
+                <div *ngIf="city.touched && city.invalid" class="text-danger">
+                    City is required.
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="capacity">Capacity</label>
+                <input type="number" class="form-control" id="capacity" name="capacity" placeholder="Enter capacity"
+                    [(ngModel)]="concert.location.capacity" #capacity="ngModel" required>
+                <div *ngIf="capacity.touched && capacity.invalid" class="text-danger">
+                    Capacity is required.
+                </div>
+            </div>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+
+        <h3>Artists attending</h3>
+        <div class="form-group my-3">
+            <label for="artists">Select Artists</label>
+            <select id="artists" name="artists" class="form-select" multiple
+                [(ngModel)]="selectedArtists" required>
+                <option *ngFor="let artist of artists" [ngValue]="artist.id">{{ artist.name }}</option>
+            </select>
+            <div *ngIf="!validArtistAmount" class="text-danger">
+                Please select at least one artist.
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-end">
+            <button type="submit" class="btn btn-primary my-3">
+                {{ isEdit ? 'Update Concert' : 'Create Concert' }}
+            </button>
+        </div>
     </form>
 </div>
