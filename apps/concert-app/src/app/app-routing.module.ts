@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from '@angular-concert-project/user';
 import { RegisterComponent } from '@angular-concert-project/user';
-import { HomeComponent } from '@angular-concert-project/shared';
 import { ConcertOverviewComponent } from './pages/concert-page/concert-overview/concert-overview.component';
 import { ConcertEditComponent } from './pages/concert-page/concert-edit/concert-edit.component';
 import { ConcertDetailComponent } from './pages/concert-page/concert-detail/concert-detail.component';
@@ -13,6 +12,7 @@ import { AboutComponent } from './pages/about-page/about.component';
 import { ArtistOverviewComponent } from './pages/artist-page/artist-overview/artist-overview.component';
 import { ArtistEditComponent } from './pages/artist-page/artist-edit/artist-edit.component';
 import { ArtistDetailComponent } from './pages/artist-page/artist-detail/artist-detail.component';
+import { HomeComponent } from './pages/home/home.component';
 
 const routes: Routes = [
     { path: '', pathMatch: 'full', component: HomeComponent },

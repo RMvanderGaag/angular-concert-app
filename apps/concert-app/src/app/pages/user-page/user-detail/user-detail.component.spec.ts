@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute, convertToParamMap } from '@angular/router';
 import { UserDetailComponent } from './user-detail.component';
-import { UserService } from '../../../shared/services/user/user.service';
-import { User } from '../../../shared/models/user.model';
+import { UserService } from '../../../../../../../libs/shared/src/lib/services/user/user.service';
+import { User } from '../../../../../../../libs/shared/src/lib/models/user.model';
 import { of } from 'rxjs';
 
 describe('UserDetailComponent', () => {

@@ -1,0 +1,26 @@
+<div class="container mt-5">
+    <!-- Hero Section -->
+    <div class="jumbotron text-center bg-light p-5 rounded">
+      <h1 class="display-4">Welcome to Concert Vibes!</h1>
+      <p class="lead">Discover the latest concerts, book tickets, and experience live music like never before!</p>
+      <a class="btn btn-primary btn-lg" href="/concerts" role="button">Explore Concerts</a>
+    </div>
+  
+    <!-- Featured Concerts Section -->
+    <section class="my-5">
+      <h2 class="text-center mb-4">Upcoming Concerts</h2>
+      <div class="row">
+        <div class="col-md-4 mb-4" *ngFor="let concert of upcomingConcerts">
+          <div class="card shadow">
+            <div class="card-body">
+              <h5 class="card-title">{{ concert.name }}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">{{concert.date | date: 'dd/MM/yyyy'}}</h6>
+              <a [href]="'/concerts/' + concert.id" class="btn btn-primary">Learn More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+  </div>
+  

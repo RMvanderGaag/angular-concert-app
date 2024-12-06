@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IArtist } from '../../../shared/models/artist.model';
-import { ArtistService } from '../../../shared/services/artist/artist.service';
+import { IArtist, ArtistService } from '@angular-concert-project/shared';
 
 @Component({
   selector: 'angular-concert-project-artist-overview',

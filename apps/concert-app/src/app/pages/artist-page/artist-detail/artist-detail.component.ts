@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { IArtist } from '../../../shared/models/artist.model';
-import { ArtistService } from '../../../shared/services/artist/artist.service';
+import { IArtist, ArtistService } from '@angular-concert-project/shared'
 import { ActivatedRoute } from '@angular/router';
-import { Buffer } from 'buffer';
 
 @Component({
   selector: 'angular-concert-project-artist-detail',

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { IArtist } from '../../../shared/models/artist.model';
-import { ArtistService } from '../../../shared/services/artist/artist.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { IArtist, ArtistService } from '@angular-concert-project/shared' 
 
 @Component({
   selector: 'angular-concert-project-artist-edit',

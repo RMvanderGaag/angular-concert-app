@@ -1,7 +1,7 @@
 <div class="container">
     <div class="d-flex justify-content-between mt-3">
         <h2>Concerts</h2>
-        <a class="btn btn-primary my-2" routerLink="new">Create concert</a>
+        <a class="btn btn-primary my-2" routerLink="new"><i class="bi bi-plus-circle"></i> Create Concert</a>
     </div>
     <hr>
     <div class="row">
@@ -23,7 +23,7 @@
                     </div>
                     <h6 class="card-subtitle mb-2 text-muted">{{concert.date | date: 'dd/MM/yyyy'}}</h6>
                     <p class="card-text">Location: <b>{{concert.location!.name}}</b></p>
-                    <p class="card-text">Artists amount: <b>{{ concert.artists.length }}</b></p>
+                    <p class="card-text">Artists attending: {{ getArtistsDisplay(concert.artists) }}</p>
   
                     <a routerLink="{{concert.id}}" class="btn btn-primary mt-auto">Information</a>
                 </div>
