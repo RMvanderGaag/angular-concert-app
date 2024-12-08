@@ -16,6 +16,9 @@ import { UserEditComponent } from './pages/user-page/user-edit/user-edit.compone
 import { ArtistOverviewComponent } from './pages/artist-page/artist-overview/artist-overview.component';
 import { ArtistDetailComponent } from './pages/artist-page/artist-detail/artist-detail.component';
 import { ArtistEditComponent } from './pages/artist-page/artist-edit/artist-edit.component';
+import { ConcertService } from '../../../../libs/shared/src/lib/services/concert/concert.service';
+import { CommonModule } from '@angular/common';
+import { HomeComponent } from './pages/home/home.component';
 
 @NgModule({
   imports: [
@@ -26,6 +29,7 @@ import { ArtistEditComponent } from './pages/artist-page/artist-edit/artist-edit
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    CommonModule
   ],
   declarations: [
     AppComponent,
@@ -38,6 +42,7 @@ import { ArtistEditComponent } from './pages/artist-page/artist-edit/artist-edit
     ArtistOverviewComponent,
     ArtistDetailComponent,
     ArtistEditComponent,
+    HomeComponent
   ],
   providers: [],
   bootstrap: [AppComponent],

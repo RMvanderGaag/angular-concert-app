@@ -18,7 +18,8 @@
       "@angular-concert-project/auth": ["libs/auth/src/index.ts"],
       "@angular-concert-project/shared": ["libs/shared/src/index.ts"],
       "@angular-concert-project/user": ["libs/user/src/index.ts"],
-      "@angular-concert-project/users": ["libs/users/src/index.ts"]
+      "@angular-concert-project/users": ["libs/users/src/index.ts"],
+      "@angular-concert-project/app": ["apps/concert-app"]
     }
   },
   "exclude": ["node_modules", "tmp"]

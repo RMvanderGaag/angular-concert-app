@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IConcert } from '../../../shared/models/concert.model';
-import { ConcertService } from '../../../shared/services/concert/concert.service';
-import { IArtist } from '../../../shared/models/artist.model';
-import { ArtistService } from '../../../shared/services/artist/artist.service';
+
+import { ArtistService, IArtist, ConcertService, IConcert } from '@angular-concert-project/shared'
 
 @Component({
   selector: 'app-concert-edit',

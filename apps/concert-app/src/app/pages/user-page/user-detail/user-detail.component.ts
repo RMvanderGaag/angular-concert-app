@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { User } from '../../../shared/models/user.model';
-import { UserService } from '../../../shared/services/user/user.service';
+import { User, UserService } from '@angular-concert-project/shared';
 
 @Component({
   selector: 'app-user-detail',

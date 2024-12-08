@@ -13,5 +13,5 @@
     "jest.config.ts",
     "src/**/*.test.ts"
   ],
-  "include": ["src/**/*.ts"]
+  "include": ["src/**/*.ts", "src/lib/models/artist.model.ts", "src/lib/models/concert.model.ts", "src/lib/models/location.model.ts", "src/lib/models/user.model.ts"]
 }

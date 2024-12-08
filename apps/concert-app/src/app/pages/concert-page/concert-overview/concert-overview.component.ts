@@ -1,9 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { IConcert } from '../../../shared/models/concert.model';
-import { ConcertService } from '../../../shared/services/concert/concert.service';
 import { NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
 import { RouterLink, RouterLinkActive, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { IArtist, IConcert, ConcertService } from '@angular-concert-project/shared';
 
 @Component({
   selector: 'app-concert-overview',
@@ -29,5 +28,17 @@ export class ConcertOverviewComponent implements OnInit {
     this.concertService.deleteConcert(id).subscribe(() => {
       this.getAllConcerts();
     });
+  }
+
+  getArtistsDisplay(artists: IArtist[]) {
+    if (artists.length === 1) {
+      return artists[0].name;
+    }
+
+    if (artists.length === 2) {
+      return `${artists[0].name}, ${artists[1].name}`;
+    }
+
+    return `${artists[0].name}, ${artists[1].name} and ${artists.length - 2} more`;
   }
 }

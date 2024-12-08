@@ -1,6 +1,6 @@
 {
   "extends": "./tsconfig.json",
-  "include": ["src/**/*.ts"],
+  "include": ["src/**/*.ts", "../../libs/shared/src/lib/models/artist.model.ts", "../../libs/shared/src/lib/models/concert.model.ts", "../../libs/shared/src/lib/models/location.model.ts", "../../libs/shared/src/lib/models/user.model.ts"],
   "compilerOptions": {
     "types": ["jest", "node"]
   }

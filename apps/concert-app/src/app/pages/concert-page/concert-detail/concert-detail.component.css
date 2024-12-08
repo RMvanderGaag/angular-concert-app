@@ -1,0 +1,17 @@
+/* Header background image */
+.concert-header {
+  height: 60vh;
+  background-image: url('../../../../assets/img/concert.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+/* Artist item hover effect */
+.artist-item {
+  transition: transform 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.artist-item:hover {
+  transform: scale(1.01);
+}
