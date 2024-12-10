@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http"
 import { BehaviorSubject, catchError, Observable, of } from 'rxjs';
 import { userLogin } from '../../models/user-login.model';
-import { IRegisterUser } from '../../models/user.model';
+import { IRegisterUser, IUser } from '../../models/user.model';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -35,5 +35,25 @@ export class AuthService {
     this.router.navigate(["/"]);
     localStorage.removeItem("token");
     localStorage.removeItem("user");
+  }
+
+
+  getUserFromLocalStorage() {
+    const userData = localStorage.getItem('user');
+    if(userData){
+      const localUser = JSON.parse(userData);
+      return of(localUser);
+    }else{
+      return of(undefined);
+    }
+  }
+
+  isAdmin(): boolean {
+    const userData = localStorage.getItem('user');
+    if (userData) {
+      const localUser: IUser = JSON.parse(userData);
+      return localUser.isAdmin === true;
+    }
+    return false;
   }
 }

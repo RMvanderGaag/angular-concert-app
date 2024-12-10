@@ -13,30 +13,35 @@ import { ArtistDetailComponent } from './pages/artist-page/artist-detail/artist-
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login-page/login.component';
 import { RegisterComponent } from './pages/register-page/register.component';
+import { AdminGuard } from '@angular-concert-project/shared';
+import { TicketOverviewComponent } from './pages/ticket-page/ticket-overview/ticket-overview.component';
 
 const routes: Routes = [
     { path: '', pathMatch: 'full', component: HomeComponent },
-
-    { path: 'concerts', pathMatch: 'full', component: ConcertOverviewComponent },
-    { path: 'concerts/new', pathMatch: 'full', component: ConcertEditComponent },
-    { path: 'concerts/:id', pathMatch: 'full', component: ConcertDetailComponent },
-    { path: 'concerts/:id/edit', pathMatch: 'full', component: ConcertEditComponent },
-    
-    { path: 'users', pathMatch: 'full', component: UserOverviewComponent },
-    { path: 'users/new', pathMatch: 'full', component: UserEditComponent },
-    { path: 'users/:id', pathMatch: 'full', component: UserDetailComponent },
-    { path: 'users/:id/edit', pathMatch: 'full', component: UserEditComponent },
-
-    { path: 'artists', pathMatch: 'full', component: ArtistOverviewComponent },
-    { path: 'artists/new', pathMatch: 'full', component: ArtistEditComponent },
-    { path: 'artists/:id', pathMatch: 'full', component: ArtistDetailComponent },
-    { path: 'artists/:id/edit', pathMatch: 'full', component: ArtistEditComponent },
-
     { path: 'login', pathMatch: 'full', component: LoginComponent },
     { path: 'register', pathMatch: 'full', component: RegisterComponent },
+    { path: 'about', pathMatch: 'full', component: AboutComponent },
 
+    { path: 'concerts', pathMatch: 'full', component: ConcertOverviewComponent },
+    { path: 'concerts/new', pathMatch: 'full', component: ConcertEditComponent, canActivate: [AdminGuard] },
+    { path: 'concerts/:id', pathMatch: 'full', component: ConcertDetailComponent },
+    { path: 'concerts/:id/edit', pathMatch: 'full', component: ConcertEditComponent, canActivate: [AdminGuard] },
+    
+    { path: 'users', pathMatch: 'full', component: UserOverviewComponent, canActivate: [AdminGuard] },
+    { path: 'users/new', pathMatch: 'full', component: UserEditComponent, canActivate: [AdminGuard] },
+    { path: 'users/:id', pathMatch: 'full', component: UserDetailComponent, canActivate: [AdminGuard] },
+    { path: 'users/:id/edit', pathMatch: 'full', component: UserEditComponent, canActivate: [AdminGuard] },
 
-    { path: 'about', pathMatch: 'full', component: AboutComponent }
+    { path: 'artists', pathMatch: 'full', component: ArtistOverviewComponent },
+    { path: 'artists/new', pathMatch: 'full', component: ArtistEditComponent, canActivate: [AdminGuard] },
+    { path: 'artists/:id', pathMatch: 'full', component: ArtistDetailComponent },
+    { path: 'artists/:id/edit', pathMatch: 'full', component: ArtistEditComponent, canActivate: [AdminGuard] },
+
+    
+    { path: 'tickets', pathMatch: 'full', component: TicketOverviewComponent },
+
+	{ path: '**', pathMatch: 'full', component: HomeComponent },
+
 ];
 
 @NgModule({

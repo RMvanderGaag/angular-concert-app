@@ -37,6 +37,12 @@ export class TicketService {
         return this.ticketModel.find({ concert: concert._id }).exec();
     }
 
+    async getTicketFromUserByConcert(userId: string, concertId: string): Promise<Ticket> {
+        let concert: any = await this.concertService.getConcert(concertId);
+        let user = await this.userService.getUserInfo(userId);
+        return this.ticketModel.findOne({ concert: concert._id, user: user }).exec();
+    }
+
     async deleteTicketById(id: string): Promise<Ticket> {
         return this.ticketModel.findOneAndRemove({ id: id }).exec();
     }

@@ -2,7 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
 import { RouterLink, RouterLinkActive, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { IArtist, IConcert, ConcertService } from '@angular-concert-project/shared';
+import { IArtist, IConcert, ConcertService, AuthService, IUser } from '@angular-concert-project/shared';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-concert-overview',
@@ -11,10 +12,12 @@ import { IArtist, IConcert, ConcertService } from '@angular-concert-project/shar
 })
 export class ConcertOverviewComponent implements OnInit {
   concerts: IConcert[] = [];
+  isAdmin: boolean = false;
 
-  constructor(private concertService: ConcertService) { }
+  constructor(private concertService: ConcertService, private authService: AuthService) { }
 
   ngOnInit(): void {
+    this.isAdmin = this.authService.isAdmin();
     this.getAllConcerts();
   }
 

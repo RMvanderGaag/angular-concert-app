@@ -7,7 +7,8 @@
     <div>
       <h1 class="display-1 fw-bold">{{ concert?.name }}</h1>
       <p class="lead">{{ concert?.date | date: 'EEEE, dd MMMM yyyy' }}</p>
-      <a href="#" class="btn btn-primary btn-lg mt-3">Buy Tickets</a>
+      <a *ngIf="ticket == null" (click)="buyTicket()" class="btn btn-primary btn-lg mt-3">Buy Tickets</a>
+      <h3 *ngIf="ticket" class="mt-3">You already bought a ticket!</h3>
     </div>
   </div>
 </div>

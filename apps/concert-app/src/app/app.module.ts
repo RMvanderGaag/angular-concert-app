@@ -20,6 +20,7 @@ import { CommonModule } from '@angular/common';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login-page/login.component';
 import { RegisterComponent } from './pages/register-page/register.component';
+import { TicketOverviewComponent } from './pages/ticket-page/ticket-overview/ticket-overview.component';
 
 @NgModule({
   imports: [
@@ -46,6 +47,7 @@ import { RegisterComponent } from './pages/register-page/register.component';
     HomeComponent,
     LoginComponent,
     RegisterComponent,
+    TicketOverviewComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],

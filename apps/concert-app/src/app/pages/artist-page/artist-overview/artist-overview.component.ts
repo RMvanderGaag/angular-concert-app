@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { IArtist, ArtistService } from '@angular-concert-project/shared';
+import { IArtist, ArtistService, AuthService } from '@angular-concert-project/shared';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'angular-concert-project-artist-overview',
@@ -7,11 +8,14 @@ import { IArtist, ArtistService } from '@angular-concert-project/shared';
   styleUrls: ['./artist-overview.component.scss'],
 })
 export class ArtistOverviewComponent implements OnInit {
-  constructor(private artistService: ArtistService){}
+  constructor(private artistService: ArtistService, private authService: AuthService){}
+  
 
   artists: IArtist[] = [];
+  isAdmin: boolean = false;
 
-  ngOnInit(): void {
+  ngOnInit(): void {    
+    this.isAdmin = this.authService.isAdmin();
     this.getAllArtists();
   }
 

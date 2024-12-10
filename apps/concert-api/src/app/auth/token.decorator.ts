@@ -1,4 +1,5 @@
 import { createParamDecorator, ExecutionContext } from '@nestjs/common';
+import { jwtDecode } from 'jwt-decode';
 
 export interface Token {
     email: string;
@@ -6,12 +7,10 @@ export interface Token {
 }
 
 export const InjectToken = createParamDecorator(
-    (_data: unknown, ctx: ExecutionContext) => {
-        const request = ctx.switchToHttp().getRequest();
-        const token = request.headers['authorization']; 
+	(_data: unknown, ctx: ExecutionContext) => {
+		const request = ctx.switchToHttp().getRequest();
+		const jwt = request['headers'].authorization;
 
-        
-
-        return token;
-    },
+		return jwtDecode(jwt);
+	}
 );

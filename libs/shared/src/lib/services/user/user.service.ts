@@ -63,7 +63,6 @@ export class UserService {
   }
 
   getUserById(id: string): Observable<IUser> {
-    console.log(this.url)
     return this.httpClient.get<IUser>(`${this.url}/${id}`);
   }
 
@@ -91,7 +90,6 @@ export class UserService {
     if(token){
       try{
         const decoded: any = jwtDecode(token);
-        console.log(decoded);
         return this.getUserById(decoded.id);
       }catch(error){
         console.log(error);
@@ -99,15 +97,5 @@ export class UserService {
     }
 
     return null;
-
-    // const headers = new HttpHeaders({
-    //   'Access-Control-Allow-Origin': '*',
-    //   Authorization: `${token}`,
-    // });
-
-    // return this.httpClient.get<IUser>("http://localhost:3333/api/data/user" + "/info", {
-    //   headers: headers,
-    // })
-
   }
 } 

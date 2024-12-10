@@ -1,0 +1,28 @@
+<div class="container mt-5">
+    <h2>My Concert Tickets</h2>
+    <table class="table table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th>Concert</th>
+          <th>Date</th>
+          <th>Location</th>
+          <th>Seat Number</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ticket of tickets" (click)="navigateToConcert(ticket.concert.id)" style="cursor: pointer;">
+          <td>{{ ticket.concert.name }}</td>
+          <td>{{ ticket.concert.date | date: 'EEEE, dd MMMM yyyy' }}</td>
+          <td>{{ ticket.concert.location.name }}</td>
+          <td>{{ ticket.seatNumber }}</td>
+          <td>
+            <button (click)="deleteTicket(ticket.id)" class="btn btn-outline-danger btn-sm d-flex align-items-center gap-1">
+                <i class="bi bi-trash"></i> Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

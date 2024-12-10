@@ -32,6 +32,7 @@ export class LoginComponent {
       if(user){
         user.subscribe((user: IUser) => {
           localStorage.setItem('user', JSON.stringify(user));
+          // this.authService.isAdmin.next(user.isAdmin);
         });
       }
       this.authService.loggedIn.next(true);
