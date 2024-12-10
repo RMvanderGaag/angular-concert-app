@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModlue } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { NavbarComponent, SharedModule } from '@angular-concert-project/shared';
+import { SharedModule } from '@angular-concert-project/shared';
 import { ConcertOverviewComponent } from './pages/concert-page/concert-overview/concert-overview.component';
 import { FormsModule } from '@angular/forms';
 import { ConcertDetailComponent } from './pages/concert-page/concert-detail/concert-detail.component';
@@ -16,9 +16,10 @@ import { UserEditComponent } from './pages/user-page/user-edit/user-edit.compone
 import { ArtistOverviewComponent } from './pages/artist-page/artist-overview/artist-overview.component';
 import { ArtistDetailComponent } from './pages/artist-page/artist-detail/artist-detail.component';
 import { ArtistEditComponent } from './pages/artist-page/artist-edit/artist-edit.component';
-import { ConcertService } from '../../../../libs/shared/src/lib/services/concert/concert.service';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './pages/home/home.component';
+import { LoginComponent } from './pages/login-page/login.component';
+import { RegisterComponent } from './pages/register-page/register.component';
 
 @NgModule({
   imports: [
@@ -29,7 +30,7 @@ import { HomeComponent } from './pages/home/home.component';
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    CommonModule
+    CommonModule,
   ],
   declarations: [
     AppComponent,
@@ -42,7 +43,9 @@ import { HomeComponent } from './pages/home/home.component';
     ArtistOverviewComponent,
     ArtistDetailComponent,
     ArtistEditComponent,
-    HomeComponent
+    HomeComponent,
+    LoginComponent,
+    RegisterComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],

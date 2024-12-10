@@ -25,6 +25,7 @@ export class UserController {
 
     @Get('info')
     async getUserInfo(@InjectToken() token: Token): Promise<User> {
+        console.log(token);
         return await this.userService.getUserInfo(token.id);
     }
 

@@ -3,16 +3,8 @@
         <a class="navbar-brand fw-bold" href="#">
             <i class="bi bi-music-note-list"></i> ConcertApp
         </a>
-        <div id="navbarNavAltMarkup">
-            <div class="navbar-nav ms-auto">
-                <a 
-                    class="nav-item nav-link" 
-                    routerLink="/" 
-                    routerLinkActive="active" 
-                    [routerLinkActiveOptions]="{ exact: true }"
-                >
-                    Home
-                </a>
+        <div class="d-flex w-100">
+            <div class="navbar-nav me-auto">
                 <a 
                     class="nav-item nav-link" 
                     routerLink="/concerts" 
@@ -28,19 +20,53 @@
                     Artists
                 </a>
                 <a 
-                class="nav-item nav-link" 
-                routerLink="/users" 
-                routerLinkActive="active"
-            >
-                Users
-                </a>
-                <a 
                     class="nav-item nav-link" 
                     routerLink="/about" 
                     routerLinkActive="active"
                 >
                     About
                 </a>
+            </div>
+            <div class="navbar-nav ms-auto">
+                <!-- Show Login Button if User is Not Logged In -->
+                <button 
+                    *ngIf="!(loggedIn$ | async)"
+                    class="btn btn-outline-light my-2 my-sm-0"
+                    routerLink="/login"
+                    routerLinkActive="btn-light text-dark"
+                >
+                    Login
+                </button>
+
+                <!-- Show Dropdown if User is Logged In -->
+                <div 
+                    *ngIf="(loggedIn$ | async) as IUser" 
+                    class="dropdown"
+                >
+                    <button 
+                        class="btn btn-light dropdown-toggle my-2 my-sm-0"
+                        type="button" 
+                        id="accountDropdown" 
+                        data-bs-toggle="dropdown" 
+                        aria-expanded="false"
+                    >
+                        Account
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="accountDropdown">
+                        <li>
+                            <a class="dropdown-item" routerLink="/tickets">Tickets</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" routerLink="/profile">Profile</a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            <button class="dropdown-item" (click)="logout()">Logout</button>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

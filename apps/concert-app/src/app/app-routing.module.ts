@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from '@angular-concert-project/user';
-import { RegisterComponent } from '@angular-concert-project/user';
 import { ConcertOverviewComponent } from './pages/concert-page/concert-overview/concert-overview.component';
 import { ConcertEditComponent } from './pages/concert-page/concert-edit/concert-edit.component';
 import { ConcertDetailComponent } from './pages/concert-page/concert-detail/concert-detail.component';
@@ -13,6 +11,8 @@ import { ArtistOverviewComponent } from './pages/artist-page/artist-overview/art
 import { ArtistEditComponent } from './pages/artist-page/artist-edit/artist-edit.component';
 import { ArtistDetailComponent } from './pages/artist-page/artist-detail/artist-detail.component';
 import { HomeComponent } from './pages/home/home.component';
+import { LoginComponent } from './pages/login-page/login.component';
+import { RegisterComponent } from './pages/register-page/register.component';
 
 const routes: Routes = [
     { path: '', pathMatch: 'full', component: HomeComponent },
@@ -31,6 +31,9 @@ const routes: Routes = [
     { path: 'artists/new', pathMatch: 'full', component: ArtistEditComponent },
     { path: 'artists/:id', pathMatch: 'full', component: ArtistDetailComponent },
     { path: 'artists/:id/edit', pathMatch: 'full', component: ArtistEditComponent },
+
+    { path: 'login', pathMatch: 'full', component: LoginComponent },
+    { path: 'register', pathMatch: 'full', component: RegisterComponent },
 
 
     { path: 'about', pathMatch: 'full', component: AboutComponent }

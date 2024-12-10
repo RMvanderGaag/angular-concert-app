@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { User, UserService} from '@angular-concert-project/shared';
+import { IUser, UserService} from '@angular-concert-project/shared';
 
 @Component({
   selector: 'app-user-overview',
@@ -7,7 +7,7 @@ import { User, UserService} from '@angular-concert-project/shared';
   styleUrls: ['./user-overview.component.css']
 })
 export class UserOverviewComponent implements OnInit {
-  users: User[] = [];
+users: IUser[] = [];
 
   constructor(private userService: UserService) { }
 

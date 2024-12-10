@@ -26,6 +26,7 @@ export class AuthController {
 
     @Post('register')
     async register(@Body() user: UserRegistration): Promise<ResourceId> {
+        console.log("register");
         let identityUser = null;
         try {
             identityUser = await this.authService.registerUser(user.email, user.password);
