@@ -62,6 +62,8 @@ export class ConcertService {
             { $pull: { concerts: concert._id } }
         );
 
+        await this.ticketModel.deleteMany({concert: concert})
+
         return this.concertModel.findOneAndDelete({id: id}).exec();
     }
 

@@ -10,6 +10,7 @@ import { IConcert, ConcertService, AuthService, ITicket, TicketService } from '@
 export class ConcertDetailComponent implements OnInit {
   concert: IConcert | undefined;
   ticket: ITicket | null = null;
+  errMsg: string | null = null;
 
   constructor(private concertService: ConcertService, private route: ActivatedRoute, private router: Router, private authService: AuthService, private ticketService: TicketService) { }
 
@@ -60,6 +61,8 @@ export class ConcertDetailComponent implements OnInit {
 
     this.ticketService.addTicket(ticket).subscribe((result) => {
       location.reload();
+    }, error => {
+      this.errMsg = error.error.message;
     })
 
   }

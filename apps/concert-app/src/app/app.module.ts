@@ -21,6 +21,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login-page/login.component';
 import { RegisterComponent } from './pages/register-page/register.component';
 import { TicketOverviewComponent } from './pages/ticket-page/ticket-overview/ticket-overview.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 @NgModule({
   imports: [
@@ -48,6 +49,7 @@ import { TicketOverviewComponent } from './pages/ticket-page/ticket-overview/tic
     LoginComponent,
     RegisterComponent,
     TicketOverviewComponent,
+    ProfileComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],

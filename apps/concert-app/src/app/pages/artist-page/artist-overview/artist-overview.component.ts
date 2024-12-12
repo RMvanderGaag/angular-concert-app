@@ -13,6 +13,7 @@ export class ArtistOverviewComponent implements OnInit {
 
   artists: IArtist[] = [];
   isAdmin: boolean = false;
+  errMsg: string | null = null;
 
   ngOnInit(): void {    
     this.isAdmin = this.authService.isAdmin();
@@ -28,6 +29,8 @@ export class ArtistOverviewComponent implements OnInit {
   deleteArtist(id: string): void {
     this.artistService.deleteArtist(id).subscribe(() => {
       this.getAllArtists();
+    }, error => {
+      this.errMsg = error.error.message
     })
   }
 

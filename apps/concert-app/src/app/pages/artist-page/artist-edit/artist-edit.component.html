@@ -1,4 +1,6 @@
 <div class="container">
+    <angular-concert-project-error *ngIf="errMsg" [message]="errMsg"/>
+      
     <div class="d-flex justify-content-between mt-3">
         <h2 *ngIf="!isEdit">Create Artist</h2>
         <h2 *ngIf="isEdit">Edit Artist</h2>

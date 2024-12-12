@@ -57,27 +57,27 @@ export class UserService {
   constructor(private httpClient: HttpClient) {
   }
 
-  getUsers(): IUser[] {
-    console.log(this.users.length + " users returned")
-    return this.users;
+  getUsers(): Observable<IUser[]> {
+    return this.httpClient.get<IUser[]>(`${this.url}`);
   }
 
   getUserById(id: string): Observable<IUser> {
     return this.httpClient.get<IUser>(`${this.url}/${id}`);
   }
 
-  deleteUser(id: number) {
-    var userToDelete = this.users.findIndex((u) => u.id == id)
-    this.users.splice(userToDelete, 1);
+  deleteUser(id: string) {
+    let currentUser: any = null;
+    return this.getLoggedInUser()?.subscribe((result) => {
+      console.log(result);
+      currentUser = result;
+      if(currentUser.id == id) throw Error("Cannot delete logged in user");
+      
+      this.httpClient.delete<IUser>(`${this.url}/${id}`);
+    })
   }
 
-  addUser(user: IUser) {
-    this.users.push(user);
-  }
-
-  updateUser(user: IUser) {
-    let editUser = this.users.findIndex((x) => x.id == user.id);
-    this.users[editUser] = user;
+  updateUser(user: IUser): Observable<IUser> {
+    return this.httpClient.put<IUser>(`${this.url}/${user.id}`, user);
   }
 
   getToken(): string {

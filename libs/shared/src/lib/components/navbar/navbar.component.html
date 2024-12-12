@@ -20,6 +20,14 @@
                     Artists
                 </a>
                 <a 
+                    *ngIf="currentUser?.isAdmin"
+                    class="nav-item nav-link" 
+                    routerLink="/users" 
+                    routerLinkActive="active"
+                >
+                    Users
+                </a>
+                <a 
                     class="nav-item nav-link" 
                     routerLink="/about" 
                     routerLinkActive="active"
@@ -50,7 +58,7 @@
                         data-bs-toggle="dropdown" 
                         aria-expanded="false"
                     >
-                        Account
+                        {{ currentUser?.name }}
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="accountDropdown">
                         <li>

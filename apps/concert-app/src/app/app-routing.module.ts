@@ -15,6 +15,7 @@ import { LoginComponent } from './pages/login-page/login.component';
 import { RegisterComponent } from './pages/register-page/register.component';
 import { AdminGuard } from '@angular-concert-project/shared';
 import { TicketOverviewComponent } from './pages/ticket-page/ticket-overview/ticket-overview.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 const routes: Routes = [
     { path: '', pathMatch: 'full', component: HomeComponent },
@@ -39,6 +40,8 @@ const routes: Routes = [
 
     
     { path: 'tickets', pathMatch: 'full', component: TicketOverviewComponent },
+    { path: 'profile', pathMatch: 'full', component: ProfileComponent },
+
 
 	{ path: '**', pathMatch: 'full', component: HomeComponent },
 

@@ -18,6 +18,9 @@ export class TicketService {
 
     async createTicket(ticket: Ticket, userId: string, concertId: string): Promise<Ticket> {
         let concert: any = await this.concertService.getConcert(concertId);
+
+        if((new Date()) > concert.date) throw new HttpException('Concert has already happened', HttpStatus.BAD_REQUEST);
+
         let user = await this.userService.getUserInfo(userId);
 
         let concertCapacity = concert.location.capacity;

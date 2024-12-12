@@ -12,11 +12,19 @@ users: IUser[] = [];
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
-    this.users = this.userService.getUsers();
+    this.getUsers();
+  }
+
+  getUsers() {
+    this.userService.getUsers().subscribe((result) => {
+      this.users = result;
+    })
   }
 
   deleteUser(id: number) {
-    this.userService.deleteUser(id)
+    this.userService.deleteUser(id.toString())!.add(() => {
+      this.getUsers();
+    })
   }
 
 }

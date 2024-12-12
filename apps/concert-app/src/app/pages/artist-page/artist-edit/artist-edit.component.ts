@@ -21,6 +21,7 @@ export class ArtistEditComponent implements OnInit {
   isEdit: boolean = false;
   imgSrc: string = '';
   base64Img: any;
+  errMsg: string | null = null;
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
@@ -81,8 +82,10 @@ export class ArtistEditComponent implements OnInit {
       image: this.artist.image
     };
 
-    if(this.isEdit) this.artistService.udpateArtist(newArtist, newArtist.id).subscribe(() => {
+    if(this.isEdit) this.artistService.udpateArtist(newArtist, this.artist.id).subscribe(() => {
       this.router.navigate(['artists'])
+    }, error => {
+      this.errMsg = error.error.message
     });
     else this.artistService.addArtist(newArtist).subscribe(() => {
       this.router.navigate(['artists'])

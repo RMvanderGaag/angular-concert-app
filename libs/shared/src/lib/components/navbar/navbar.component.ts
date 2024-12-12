@@ -12,6 +12,7 @@ import { UserService } from '../../services/user/user.service';
 export class NavbarComponent implements OnInit{
 	loggedIn$!: Observable<boolean> | null;
   isAdmin: boolean = false;
+  currentUser: IUser | null = null;
 
   constructor(private authService: AuthService, private userService: UserService) { }
 
@@ -21,7 +22,7 @@ export class NavbarComponent implements OnInit{
     this.loggedIn$.subscribe((result) => {
       if(result){
         this.userService.getLoggedInUser()?.subscribe((result) => {
-          this.isAdmin = result.isAdmin;
+          this.currentUser = result;
         })
       }
     })

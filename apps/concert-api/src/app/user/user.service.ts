@@ -23,6 +23,8 @@ export class UserService {
     }
 
     async editUserById(id: string, user: User): Promise<User> {
+        this.identityModel.findOneAndUpdate({ id: id }, { $set: {email: user.email} }, {new: true});
+
         return this.userModel.findOneAndUpdate({ id: id }, user, {
             new: true,
             runValidators: true,
