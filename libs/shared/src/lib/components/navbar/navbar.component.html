@@ -37,14 +37,14 @@
             </div>
             <div class="navbar-nav ms-auto">
                 <!-- Show Login Button if User is Not Logged In -->
-                <button 
+                <a 
                     *ngIf="!(loggedIn$ | async)"
                     class="btn btn-outline-light my-2 my-sm-0"
                     routerLink="/login"
                     routerLinkActive="btn-light text-dark"
                 >
                     Login
-                </button>
+                </a>
 
                 <!-- Show Dropdown if User is Logged In -->
                 <div 

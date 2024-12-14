@@ -18,8 +18,10 @@
       "@angular-concert-project/app": ["apps/concert-app"],
       "@angular-concert-project/auth": ["libs/auth/src/index.ts"],
       "@angular-concert-project/shared": ["libs/shared/src/index.ts"],
+      "@angular-concert-project/util-env": ["libs/shared/util-env/src/index.ts"],
       "@angular-concert-project/user": ["libs/user/src/index.ts"],
-      "@angular-concert-project/users": ["libs/users/src/index.ts"]
+      "@angular-concert-project/users": ["libs/users/src/index.ts"],
+      "@fst/shared/util-env": ["libs/shared/util-env/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
