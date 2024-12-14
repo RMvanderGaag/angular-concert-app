@@ -1,9 +1,175 @@
-<div class="container">
-    <div class="d-flex justify-content-between mt-3">
-        <h2>About</h2>
+
+    <div class="container mt-5">
+        <h1>About Page</h1>
+        <hr>
+        <div class="mb-4">
+            <h2>My Details</h2>
+            <p><strong>Name:</strong> Rogier van der Gaag</p>
+            <p><strong>Student Number:</strong> 2181162</p>
+        </div>
+
+        <div class="mb-4">
+            <h2>Case Description</h2>
+            <p>
+                In dit project is het mogelijk om tickets te kopen voor een concert. Een gebruiker kan concerten bekijken en hier meer informatie over zien. Daarnaast kan de gebruiker zien wat voor artiesten er allemaal zijn geregisteerd op het platform en welke kunnen aanmelden voor de projecten. Als de gebruiker inlogd kan hij daadwerkelijk tickets kopen voor een concert na keuzen. Verder kan hij zijn tickets in zien en zijn profiel bewerken. Als admin heb je meer functionaliteit. Zo kan je als admin concerten aanmaken en/of bewerken en hier artiesten aan koppelen. Daarnaast kan je ook nieuwe artiesten toevoegen aan het systeem. Verder is het mogelijk om gebruikers te beheren.
+            </p>
+        </div>
+
+        <!-- ERD -->
+        <div class="mb-4">
+            <h2>Entity-Relationship Diagram (ERD)</h2>
+            <img src="assets/img/erd.png" alt="ERD Diagram" class="img-fluid">
+        </div>
+
+        <!-- Functional Requirements -->
+        <div class="mb-4">
+            <h2>Functional Requirements</h2>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Functional Requirement</th>
+                        <th>Acceptatiecriteria</th>
+                        <th>Prioriteit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>F-01</td>
+                        <td>Als gebruiker wil ik een lijst van alle concerten kunnen zien, zodat ik beschikbare concerten kan bekijken.</td>
+                        <td>
+                            <ul>
+                                <li>Er moet een lijst van concerten worden weergegeven.</li>
+                                <li>De lijst moet details tonen zoals concertnaam, datum, locatie en deelnemende artiesten.</li>
+                            </ul>
+                        </td>
+                        <td>Must</td>
+                    </tr>
+                    <tr>
+                        <td>F-02</td>
+                        <td>Als gebruiker wil ik de details van een concert kunnen bekijken, zodat ik meer informatie over het evenement kan krijgen.</td>
+                        <td>
+                            <ul>
+                                <li>De detailpagina moet informatie bevatten over de locatie en de verschillende deelnemende artiesten.</li>
+                                <li>Er moet de mogelijkheid zijn om hier een ticket te kunnen reserveren</li>
+                            </ul>
+                        </td>
+                        <td>Must</td>
+                    </tr>
+                    <tr>
+                        <td>F-03</td>
+                        <td>Als gebruiker wil ik  kunnen inloggen, zodat ik toegang krijg tot bepaalde functies.</td>
+                        <td>
+                            <ul>
+                                <li>Er moet een inlogformulier zijn met velden voor e-mail en wachtwoord.</li>
+                                <li>Er moet een foutmelding worden weergegeven bij een ongeldige inlogpoging of ongeldige gegevens.</li>
+                            </ul>
+                        </td>
+                        <td>Must</td>
+                    </tr>
+                    <tr>
+                        <td>F-04</td>
+                        <td>Als beheerder wil ik concerten kunnen toevoegen, bewerken of verwijderen, zodat ik de concerten kan beheren.</td>
+                        <td>
+                            <ul>
+                                <li>De beheerder moet specifieke opties zien voor het beheren van concerten.</li>
+                                <li>Er moet een formulier zijn om nieuwe concerten toe te voegen.</li>
+                                <li>De beheerder moet bestaande concertgegevens kunnen bewerken.</li>
+                                <li>De beheerder moet een concert kunnen verwijderen uit het systeem.</li>
+                            </ul>
+                        </td>
+                        <td>Should</td>
+                    </tr>
+                    <tr>
+                        <td>F-05</td>
+                        <td>Als gebruiker wil ik informatie over artiesten kunnen bekijken, zodat ik meer over ze te weten kan komen.</td>
+                        <td>
+                            <ul>
+                                <li>De artiestenpagina moet een eventuele foto tonen, naam geboortedatum en land.</li>
+                            </ul>
+                        </td>
+                        <td>Should</td>
+                    </tr>
+                    <tr>
+                        <td>F-06</td>
+                        <td>Als gebruiker wil ik mijn profielinformatie kunnen bewerken, zodat mijn gegevens up-to-date blijven.</td>
+                        <td>
+                            <ul>
+                                <li>Er moeten bewerkbare velden zijn waar ik mijn nieuwe gegevens in kan vullen.</li>
+                            </ul>
+                        </td>
+                        <td>Should</td>
+                    </tr>
+                    <tr>
+                        <td>F-07</td>
+                        <td>Als gebruiker wil ik tickets voor een concert kunnen boeken, zodat ik evenementen van mijn interesse kan bijwonen.</td>
+                        <td>
+                            <ul>
+                                <li>Er moet een optie zijn om tickets te boeken.</li>
+                                <li>Als er een boeking is gedaan, zie ik dat ik voor dit concert heb geboekt</li>
+                                <li>Bij het reserveren voor een concert wat al volgeboekt is moet er een foutmelding worden weergeven.</li>
+                            </ul>
+                        </td>
+                        <td>Must</td>
+                    </tr>
+                    <tr>
+                        <td>F-08</td>
+                        <td>Als gebruiker wil ik voorgestelde concerten zien op de home pagina.</td>
+                        <td>
+                            <ul>
+                                <li>Op de home pagina moeten er een paar voorgestelde concerten komen die de gebruiker gelijk ziet.</li>
+                            </ul>
+                        </td>
+                        <td>Could have</td>
+                    </tr>
+                    <tr>
+                        <td>F-09</td>
+                        <td>Als gebruiker wil ik mij kunnen registreren op de applicatie</td>
+                        <td>
+                            <ul>
+                                <li>Er moet een registratieknop zijn op de inlogpagina als een gebruiker nog geen account heeft</li>
+                            </ul>
+                        </td>
+                        <td>Should</td>
+                    </tr>
+                    <tr>
+                        <td>F-10</td>
+                        <td>Als beheerder wil ik artiesten kunnen aanmaken, bewerken en verwijderen</td>
+                        <td>
+                            <ul>
+                                <li>De beheerder moet specifieke opties zien voor het beheren van artiesten.</li>
+                                <li>Er moet een formulier zijn om nieuwe artiesten toe te voegen.</li>
+                                <li>De beheerder moet bestaande artiesten kunnen bewerken.</li>
+                                <li>De beheerder moet een artiest kunnen verwijderen uit het systeem.</li>
+                                <li>Als een artiest is gekoppeld aan een concert, moet deze niet verwijderd kunnen worden.</li>
+                            </ul>
+                        </td>
+                        <td>Must</td>
+                    </tr>
+                    <tr>
+                        <td>F-11</td>
+                        <td>Als beheerder wil ik gebruikers kunnen aanmaken, bewerken en verwijderen</td>
+                        <td>
+                            <ul>
+                                <li>Alleen de beheerder kan alle gebruikers zien, bewerken, aanmaken of verwijderen</li>
+                                <li>De beheerder moet bestaande gebruikers kunnen bewerken.</li>
+                                <li>De beheerder moet een gebruiker kunnen verwijderen uit het systeem.</li>
+                            </ul>
+                        </td>
+                        <td>Should</td>
+                    </tr>
+                    <tr>
+                        <td>F-12</td>
+                        <td>Als gebruiker wil ik mijn tickets kunnen inzien en annuleren</td>
+                        <td>
+                            <ul>
+                                <li>Gebruikers moeten kunnen zien, welke tickets zij hebben gereserveerd</li>
+                                <li>Gebruikers moeten de mogleijkheid hebben om hun tickets te annuleren.</li>
+                            </ul>
+                        </td>
+                        <td>Should</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-    <hr>
-    <div>
-        <img class="d-block mx-auto w-50" src="../../../assets/img/erd.jpg" alt="erd">
-    </div>
-</div>
