@@ -18,6 +18,9 @@ export class TicketService {
 
     async createTicket(ticket: Ticket, userId: string, concertId: string): Promise<Ticket> {
         let concert: any = await this.concertService.getConcert(concertId);
+
+        if((new Date()) > concert.date) throw new HttpException('Concert has already happened', HttpStatus.BAD_REQUEST);
+
         let user = await this.userService.getUserInfo(userId);
 
         let concertCapacity = concert.location.capacity;
@@ -35,6 +38,12 @@ export class TicketService {
     async getTicketsByConcertId(concertId: string): Promise<Ticket[]> {
         let concert: any = await this.concertService.getConcert(concertId);
         return this.ticketModel.find({ concert: concert._id }).exec();
+    }
+
+    async getTicketFromUserByConcert(userId: string, concertId: string): Promise<Ticket> {
+        let concert: any = await this.concertService.getConcert(concertId);
+        let user = await this.userService.getUserInfo(userId);
+        return this.ticketModel.findOne({ concert: concert._id, user: user }).exec();
     }
 
     async deleteTicketById(id: string): Promise<Ticket> {

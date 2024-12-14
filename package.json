@@ -2,11 +2,11 @@
   "name": "angular-concert-project",
   "version": "0.0.0",
   "license": "MIT",
-"scripts": {
+  "scripts": {
     "build": "nx run-many -t build",
     "build:my-app": "nx run my-app:build:production",
     "test": "nx run-many -t test"
-},
+  },
   "engines": {
     "node": "^20.0.0",
     "npm": "^10.0.0"
@@ -33,11 +33,13 @@
     "bootstrap": "^5.2.3",
     "bootstrap-icons": "^1.10.3",
     "jsonwebtoken": "^9.0.0",
+    "jwt-decode": "^4.0.0",
     "mongodb-memory-server": "^8.12.2",
     "mongoose": "^6.9.0",
     "neo4j": "^2.0.0-RC2",
     "neo4j-driver": "^5.7.0",
     "ngx-bootstrap": "^10.2.0",
+    "process": "^0.11.10",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.0.0",
     "supertest": "^6.3.3",
@@ -46,10 +48,10 @@
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
+    "@angular-devkit/build-angular": "15.1.5",
     "@angular-eslint/eslint-plugin": "~15.0.0",
     "@angular-eslint/eslint-plugin-template": "~15.0.0",
     "@angular-eslint/template-parser": "~15.0.0",
-    "@angular-devkit/build-angular": "15.1.5",
     "@angular/compiler-cli": "15.1.5",
     "@angular/language-service": "15.1.5",
     "@angular/localize": "15.1.5",
@@ -63,11 +65,14 @@
     "@nrwl/node": "15.6.0",
     "@nrwl/webpack": "15.6.0",
     "@nrwl/workspace": "15.5.3",
+    "@types/dotenv-webpack": "^7.0.8",
     "@types/jest": "28.1.1",
     "@types/node": "18.7.1",
     "@typescript-eslint/eslint-plugin": "^5.36.1",
     "@typescript-eslint/parser": "^5.36.1",
     "cypress": "^12.2.0",
+    "dotenv": "^16.4.7",
+    "dotenv-webpack": "^8.1.0",
     "eslint": "~8.15.0",
     "eslint-config-prettier": "8.1.0",
     "eslint-plugin-cypress": "^2.10.3",

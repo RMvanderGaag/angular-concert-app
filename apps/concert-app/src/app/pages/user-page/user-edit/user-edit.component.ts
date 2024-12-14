@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Route, Router } from '@angular/router';
-import { User, UserService } from '@angular-concert-project/shared';
+import { IUser, UserService } from '@angular-concert-project/shared';
 
 @Component({
   selector: 'app-user-edit',
@@ -9,7 +9,13 @@ import { User, UserService } from '@angular-concert-project/shared';
   styleUrls: ['./user-edit.component.css']
 })
 export class UserEditComponent implements OnInit {
-  user: User | undefined;
+  user: any = {
+    name: '',
+    city: '',
+    birthday: new Date(),
+    email: '',
+    isAdmin: false
+  };
   isEdit: boolean = false;
 
   constructor(private userService: UserService, private route: ActivatedRoute, private router: Router) { }
@@ -19,7 +25,9 @@ export class UserEditComponent implements OnInit {
       let id = params.get("id");
       if (id) {
         this.isEdit = true;
-        this.user = this.userService.getUserById(Number(id));
+        this.userService.getUserById(id).subscribe((result) => {
+          this.user = result
+        });
       } else {
         this.isEdit = false;
         this.user = {
@@ -27,7 +35,8 @@ export class UserEditComponent implements OnInit {
           name: "",
           email: "",
           city: "",
-          birthday: new Date()
+          birthday: new Date(),
+          isAdmin: false
         }
       }
     })
@@ -39,17 +48,10 @@ export class UserEditComponent implements OnInit {
         ...userForm.value,
         birthday: new Date(userForm.value.birthday)
       }
-      this.userService.updateUser(editUser)
-    } else {
-      let newUser = {
-        id: this.userService.getUsers().length,
-        ...userForm.value,
-        birthday: new Date(userForm.value.birthday)
-      };
-      this.userService.addUser(newUser);
-    }
-
-    this.router.navigate(['users']);
+      this.userService.updateUser(editUser).subscribe(() => {
+        this.router.navigate(['users']);
+      })
+    } 
   }
 
 }

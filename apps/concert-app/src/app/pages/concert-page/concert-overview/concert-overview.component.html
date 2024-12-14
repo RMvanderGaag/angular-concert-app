@@ -1,7 +1,7 @@
 <div class="container">
     <div class="d-flex justify-content-between mt-3">
         <h2>Concerts</h2>
-        <a class="btn btn-primary my-2" routerLink="new"><i class="bi bi-plus-circle"></i> Create Concert</a>
+        <a *ngIf="(isAdmin)" class="btn btn-primary my-2" routerLink="new"><i class="bi bi-plus-circle"></i> Create Concert</a>
     </div>
     <hr>
     <div class="row">
@@ -11,7 +11,8 @@
                     <div class="d-flex justify-content-between">
                         <h5 class="card-title justify-content-between">{{concert.name}}</h5>
                         <!-- bootstrap dropdown menu -->
-                        <div class="dropdown">
+                        <div class="dropdown" 
+                        *ngIf="(isAdmin)">
                             <button class="btn dropdown-toggle" type="button" id="concertDropdown"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                             </button>

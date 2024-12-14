@@ -1,7 +1,8 @@
 <div class="container">
+    <angular-concert-project-error *ngIf="errMsg" [message]="errMsg"/>
     <div class="d-flex justify-content-between mt-3">
         <h2>User overview</h2>
-        <a class="btn btn-primary my-2" routerLink="new">Create user</a>
+        <a class="btn btn-primary my-2" routerLink="/register">Create user</a>
     </div>
     <hr>
     <table class="table table-striped">
@@ -9,18 +10,27 @@
             <th>Id</th>
             <th>Name</th>
             <th>Email</th>
-            <th>Birthday</th>
+            <th>Admin</th>
         </thead>
         <tbody>
             <tr *ngFor="let user of users">
                 <td>{{ user.id }}</td>
                 <td>{{ user.name }}</td>
                 <td>{{ user.email }}</td>
-                <td>{{ user.birthday.toLocaleDateString() }}</td>
+                <td>{{ user.isAdmin }}</td>
+                <td></td>
                 <td class="text-end">
-                    <a routerLink="{{user.id}}" class="btn btn-primary mx-2">Details</a>
-                    <a routerLink="{{user.id}}/edit" class="btn btn-warning mx-2">Edit</a>
-                    <a (click)="deleteUser(user.id)" class=" btn btn-danger mx-2">Delete</a>
+                    <div class="mt-auto d-flex gap-3">                        
+                        <a routerLink="{{user.id}}" class="btn btn-outline-primary btn-sm d-flex align-items-center">
+                            <i class="bi bi-eye"></i>
+                        </a>
+                        <a [routerLink]="user.id + '/edit'" class="btn btn-outline-warning btn-sm d-flex align-items-center">
+                            <i class="bi bi-pencil"></i>
+                        </a>
+                        <a (click)="deleteUser(user.id)" class="btn btn-outline-danger btn-sm d-flex align-items-center">
+                            <i class="bi bi-trash"></i>
+                        </a>
+                    </div>
                 </td>
             </tr>
         </tbody>

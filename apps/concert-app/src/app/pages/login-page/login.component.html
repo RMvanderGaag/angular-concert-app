@@ -1,0 +1,35 @@
+<div class="container h-100 d-flex justify-content-center align-items-center" style="min-height: 75vh;">
+    <div class="card shadow-sm p-4" style="width: 100%; max-width: 400px;">
+        <h3 class="card-title text-center mb-4">Login</h3>
+        <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input 
+                    [(ngModel)]="userLogin.email" 
+                    name="email" 
+                    type="email" 
+                    id="email" 
+                    class="form-control" 
+                    placeholder="Enter your email" 
+                    required 
+                    >
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input 
+                    [(ngModel)]="userLogin.password" 
+                    name="password" 
+                    type="password" 
+                    id="password" 
+                    class="form-control" 
+                    placeholder="Enter your password" 
+                    required>
+            </div>
+            <div *ngIf="wrongLogin" class="text-danger mb-3">
+                Incorrect login details. Please try again.
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Login</button>
+        </form>
+        <span class="mx-auto my-2">No account? Sign up <a href="/register">here</a></span>
+    </div>
+</div>

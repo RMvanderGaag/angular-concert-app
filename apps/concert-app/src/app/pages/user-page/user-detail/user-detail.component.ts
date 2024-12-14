@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { User, UserService } from '@angular-concert-project/shared';
+import { IUser, UserService } from '@angular-concert-project/shared';
 
 @Component({
   selector: 'app-user-detail',
@@ -8,13 +8,18 @@ import { User, UserService } from '@angular-concert-project/shared';
   styleUrls: ['./user-detail.component.css']
 })
 export class UserDetailComponent implements OnInit {
-  user: User | null = null;
+  user: IUser | null = null;
 
   constructor(private userService: UserService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((p) => {
-      this.user = this.userService.getUserById(Number(p.get('id')));
+      const id = p.get('id');
+      if(id){
+        this.userService.getUserById(id).subscribe((result) => {
+          this.user = result;
+        })
+      }
     })
   }
 

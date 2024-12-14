@@ -34,6 +34,11 @@ export class TicketController {
         return await this.ticketService.getTicketsByUserId(token.id);
     }
 
+    @Get('reserved/concert/:id')
+    async getTicketFromUserByConcert(@InjectToken() token: Token, @Param('id') concertId): Promise<Ticket> {
+        return await this.ticketService.getTicketFromUserByConcert(token.id, concertId)
+    }
+
     @Get('concert/:id')
     async getTicketsByConcertId(@Param('id') concertId: string): Promise<Ticket[]> {
         return await this.ticketService.getTicketsByConcertId(concertId);
