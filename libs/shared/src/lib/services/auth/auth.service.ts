@@ -4,6 +4,7 @@ import { BehaviorSubject, catchError, Observable, of } from 'rxjs';
 import { userLogin } from '../../models/user-login.model';
 import { IRegisterUser, IUser } from '../../models/user.model';
 import { Router } from '@angular/router';
+import { environment } from '@angular-concert-project/util-env';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class AuthService {
   loggedIn = new BehaviorSubject(localStorage.getItem('token') ? true : false);
   userIsAdmin = new BehaviorSubject(JSON.parse(localStorage.getItem('user') || '{}')?.isAdmin || false);
   
-  url = "http://localhost:3333/api/auth";
+  endpoint = environment.dataApiUrl;
 
   set setLoggedInStatus(status: boolean) {
     this.loggedIn.next(status);
@@ -22,7 +23,7 @@ export class AuthService {
   constructor(private httpClient: HttpClient, private router: Router) { }
 
   login(data: userLogin) {
-    return this.httpClient.post(`${this.url}/login`, data).pipe(
+    return this.httpClient.post(`${this.endpoint}/auth/login`, data).pipe(
       catchError((error) => {
         return of(error)
       })
@@ -30,7 +31,7 @@ export class AuthService {
   }
 
   register(data: IRegisterUser) {
-    return this.httpClient.post(`${this.url}/register`, data);
+    return this.httpClient.post(`${this.endpoint}/auth/register`, data);
   }
 
   logout() {

@@ -4,81 +4,32 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { jwtDecode } from 'jwt-decode';
 import * as dotenv from 'dotenv';
+import { environment } from '@angular-concert-project/util-env';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  private url = `http://localhost:3333/api/data/user`
-
-  readonly users: IUser[] = [
-    {
-      id: 0,
-      name: "Bert",
-      city: "Breda",
-      email: "bert@mail.com",
-      birthday: new Date("05/07/1998"),
-      isAdmin: false
-    },
-    {
-      id: 1,
-      name: "Jan",
-      city: "Amsterdam",
-      email: "jan@mail.com",
-      birthday: new Date("05/07/1998"),
-      isAdmin: false
-    },
-    {
-      id: 2,
-      name: "Simon",
-      city: "Rotterdam",
-      email: "simon@mail.com",
-      birthday: new Date("05/07/1998"),
-      isAdmin: false
-    },
-    {
-      id: 3,
-      name: "Arjan",
-      city: "Texel",
-      email: "arjan@mail.com",
-      birthday: new Date("05/07/1998"),
-      isAdmin: false
-    },
-    {
-      id: 4,
-      name: "Lisa",
-      city: "Tilburg",
-      email: "lisa@mail.com",
-      birthday: new Date("05/07/1998"),
-      isAdmin: false
-    }
-  ]
+  endpoint = environment.dataApiUrl;
 
   constructor(private httpClient: HttpClient) {
   }
 
   getUsers(): Observable<IUser[]> {
-    return this.httpClient.get<IUser[]>(`${this.url}`);
+    return this.httpClient.get<IUser[]>(`${this.endpoint}/data/user`);
   }
 
   getUserById(id: string): Observable<IUser> {
-    return this.httpClient.get<IUser>(`${this.url}/${id}`);
+    return this.httpClient.get<IUser>(`${this.endpoint}/data/user/${id}`);
   }
 
-  deleteUser(id: string) {
-    // let currentUser: any = null;
-    // return this.getLoggedInUser()?.subscribe((result) => {
-    //   console.log(result);
-    //   currentUser = result;
-    //   if(currentUser.id == id) throw Error("Cannot delete logged in user");
-      
-    return this.httpClient.delete<IUser>(`${this.url}/${id}`);
-    // })
+  deleteUser(id: string) { 
+    return this.httpClient.delete<IUser>(`${this.endpoint}/data/user/${id}`);
   }
 
   updateUser(user: IUser): Observable<IUser> {
     console.log(user);
-    return this.httpClient.put<IUser>(`${this.url}/${user.id}`, user);
+    return this.httpClient.put<IUser>(`${this.endpoint}/data/user/${user.id}`, user);
   }
 
   getToken(): string {
