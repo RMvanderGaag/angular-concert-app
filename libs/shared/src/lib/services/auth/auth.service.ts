@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
   loggedIn = new BehaviorSubject(localStorage.getItem('token') ? true : false);
+  userIsAdmin = new BehaviorSubject(JSON.parse(localStorage.getItem('user') || '{}')?.isAdmin || false);
+  
   url = "http://localhost:3333/api/auth";
 
   set setLoggedInStatus(status: boolean) {

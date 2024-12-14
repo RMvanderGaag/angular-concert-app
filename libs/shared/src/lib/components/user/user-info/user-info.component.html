@@ -1,8 +1,16 @@
-<div class="my-4">
-    <div>
-        <h3>{{ user!.name }}</h3>
-        <p><strong>Email:</strong> {{ user!.email }}</p>
-        <p><strong>Birthday:</strong> {{ user!.birthday | date: 'longDate' }}</p>
-        <p><strong>City:</strong> {{ user!.city }}</p>
+<div class="container my-4">
+    <div class="border rounded p-4 shadow-sm">
+        <div class="text-center mb-4">
+            <h3 class="mb-1">{{ user!.name }}</h3>
+            <p class="text-muted">{{ user!.email }}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                <strong>Birthday:</strong> {{ user!.birthday | date: 'longDate' }}
+            </li>
+            <li class="list-group-item">
+                <strong>City:</strong> {{ user!.city }}
+            </li>
+        </ul>
     </div>
 </div>

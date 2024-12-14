@@ -1,4 +1,5 @@
 <div class="container">
+    <angular-concert-project-error *ngIf="errMsg" [message]="errMsg"/>
     <div class="d-flex justify-content-between mt-3">
         <h2>User overview</h2>
         <a class="btn btn-primary my-2" routerLink="/register">Create user</a>

@@ -13,13 +13,14 @@ import { ArtistDetailComponent } from './pages/artist-page/artist-detail/artist-
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login-page/login.component';
 import { RegisterComponent } from './pages/register-page/register.component';
-import { AdminGuard } from '@angular-concert-project/shared';
+import { AdminGuard, UserGuard } from '@angular-concert-project/shared';
 import { TicketOverviewComponent } from './pages/ticket-page/ticket-overview/ticket-overview.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { EditProfileComponent } from './pages/profile/edit-profile/edit-profile.component';
 
 const routes: Routes = [
     { path: '', pathMatch: 'full', component: HomeComponent },
-    { path: 'login', pathMatch: 'full', component: LoginComponent },
+    { path: 'login', pathMatch: 'full', component: LoginComponent , canActivate: [!AdminGuard, !UserGuard]},
     { path: 'register', pathMatch: 'full', component: RegisterComponent },
     { path: 'about', pathMatch: 'full', component: AboutComponent },
 
@@ -39,8 +40,10 @@ const routes: Routes = [
     { path: 'artists/:id/edit', pathMatch: 'full', component: ArtistEditComponent, canActivate: [AdminGuard] },
 
     
-    { path: 'tickets', pathMatch: 'full', component: TicketOverviewComponent },
-    { path: 'profile', pathMatch: 'full', component: ProfileComponent },
+    { path: 'tickets', pathMatch: 'full', component: TicketOverviewComponent, canActivate: [UserGuard] },
+    { path: 'profile', pathMatch: 'full', component: ProfileComponent, canActivate: [UserGuard] },
+    { path: 'profile/edit', pathMatch: 'full', component: EditProfileComponent, canActivate: [UserGuard] },
+
 
 
 	{ path: '**', pathMatch: 'full', component: HomeComponent },

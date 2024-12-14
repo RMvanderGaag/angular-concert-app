@@ -22,6 +22,7 @@ import { LoginComponent } from './pages/login-page/login.component';
 import { RegisterComponent } from './pages/register-page/register.component';
 import { TicketOverviewComponent } from './pages/ticket-page/ticket-overview/ticket-overview.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { EditProfileComponent } from './pages/profile/edit-profile/edit-profile.component';
 
 @NgModule({
   imports: [
@@ -50,6 +51,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
     RegisterComponent,
     TicketOverviewComponent,
     ProfileComponent,
+    EditProfileComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],

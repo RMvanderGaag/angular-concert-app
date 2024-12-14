@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IUser, UserService} from '@angular-concert-project/shared';
+import { AuthService, IUser, UserService} from '@angular-concert-project/shared';
 
 @Component({
   selector: 'app-user-overview',
@@ -8,8 +8,9 @@ import { IUser, UserService} from '@angular-concert-project/shared';
 })
 export class UserOverviewComponent implements OnInit {
 users: IUser[] = [];
+errMsg: string | null = null;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.getUsers();
@@ -22,9 +23,16 @@ users: IUser[] = [];
   }
 
   deleteUser(id: number) {
-    this.userService.deleteUser(id.toString())!.add(() => {
-      this.getUsers();
+    this.authService.getUserFromLocalStorage().subscribe((result) => {
+      if(id.toString() == result.id){ 
+        this.errMsg = "Cannot delete logged in user"
+        return;
+      }
+      this.userService.deleteUser(id.toString()).subscribe(() => {
+        this.getUsers();
+      })
     })
+
   }
 
 }

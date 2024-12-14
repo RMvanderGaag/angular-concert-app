@@ -13,11 +13,13 @@ export class NavbarComponent implements OnInit{
 	loggedIn$!: Observable<boolean> | null;
   isAdmin: boolean = false;
   currentUser: IUser | null = null;
+  userIsAdmin$!: Observable<boolean> | null;
 
   constructor(private authService: AuthService, private userService: UserService) { }
 
   ngOnInit(): void {
     this.loggedIn$ = this.authService.loggedIn;
+    this.userIsAdmin$ = this.authService.userIsAdmin;
 
     this.loggedIn$.subscribe((result) => {
       if(result){
@@ -30,6 +32,7 @@ export class NavbarComponent implements OnInit{
 
   logout() {
     this.authService.logout();
+    this.authService.userIsAdmin.next(false);
     this.authService.loggedIn.next(false);
   }
 }

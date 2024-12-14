@@ -20,7 +20,7 @@
                     Artists
                 </a>
                 <a 
-                    *ngIf="currentUser?.isAdmin"
+                    *ngIf="(userIsAdmin$ | async)"
                     class="nav-item nav-link" 
                     routerLink="/users" 
                     routerLinkActive="active"
@@ -48,7 +48,7 @@
 
                 <!-- Show Dropdown if User is Logged In -->
                 <div 
-                    *ngIf="(loggedIn$ | async) as IUser" 
+                    *ngIf="(loggedIn$ | async)" 
                     class="dropdown"
                 >
                     <button 
@@ -58,7 +58,7 @@
                         data-bs-toggle="dropdown" 
                         aria-expanded="false"
                     >
-                        {{ currentUser?.name }}
+                        Account
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="accountDropdown">
                         <li>

@@ -66,17 +66,18 @@ export class UserService {
   }
 
   deleteUser(id: string) {
-    let currentUser: any = null;
-    return this.getLoggedInUser()?.subscribe((result) => {
-      console.log(result);
-      currentUser = result;
-      if(currentUser.id == id) throw Error("Cannot delete logged in user");
+    // let currentUser: any = null;
+    // return this.getLoggedInUser()?.subscribe((result) => {
+    //   console.log(result);
+    //   currentUser = result;
+    //   if(currentUser.id == id) throw Error("Cannot delete logged in user");
       
-      this.httpClient.delete<IUser>(`${this.url}/${id}`);
-    })
+    return this.httpClient.delete<IUser>(`${this.url}/${id}`);
+    // })
   }
 
   updateUser(user: IUser): Observable<IUser> {
+    console.log(user);
     return this.httpClient.put<IUser>(`${this.url}/${user.id}`, user);
   }
 
