@@ -14,7 +14,8 @@
         "main": "apps/concert-api/src/main.ts",
         "tsConfig": "apps/concert-api/tsconfig.app.json",
         "assets": ["apps/concert-api/src/assets"],
-        "webpackConfig": "apps/concert-api/webpack.config.js"
+        "webpackConfig": "apps/concert-api/webpack.config.js",
+        "generatePackageJson": true
       },
       "configurations": {
         "production": {
