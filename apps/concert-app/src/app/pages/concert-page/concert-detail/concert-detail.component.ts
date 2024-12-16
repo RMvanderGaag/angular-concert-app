@@ -60,7 +60,7 @@ export class ConcertDetailComponent implements OnInit {
     }
 
     this.ticketService.addTicket(ticket).subscribe((result) => {
-      location.reload();
+      this.ticket = result;
     }, error => {
       this.errMsg = error.error.message;
     })

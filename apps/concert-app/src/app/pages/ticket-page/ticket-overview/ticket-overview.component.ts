@@ -19,7 +19,9 @@ export class TicketOverviewComponent implements OnInit {
   }
 
   deleteTicket(ticketId: string): void {
-    this.tickets = this.tickets.filter(ticket => ticket.id !== ticketId);
+    this.ticketService.removeTicketFromUser(ticketId).subscribe(() => {
+      this.tickets = this.tickets.filter(ticket => ticket.id !== ticketId);
+    });
   }
 
   navigateToConcert(concertId: string): void {
