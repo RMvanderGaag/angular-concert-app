@@ -29,6 +29,12 @@ export class TicketController {
         return await this.ticketService.createTicket(ticket, token.id, concertId);
     }
 
+    
+    @Delete(':id')
+    async deleteTicketById(@Param('id') ticketId): Promise<Ticket> {
+        return await this.ticketService.deleteTicketById(ticketId);
+    }
+
     @Get('reserved')
     async getTicketsByUserId(@InjectToken() token: Token): Promise<Ticket[]> {
         return await this.ticketService.getTicketsByUserId(token.id);
@@ -43,4 +49,5 @@ export class TicketController {
     async getTicketsByConcertId(@Param('id') concertId: string): Promise<Ticket[]> {
         return await this.ticketService.getTicketsByConcertId(concertId);
     }
+
 }

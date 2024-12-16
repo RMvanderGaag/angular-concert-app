@@ -50,4 +50,14 @@ export class TicketService {
 
     return this.httpClient.get<ITicket[]>(`${this.endpoint}/data/ticket/reserved`, { headers });
   }
+
+  removeTicketFromUser(id: string): Observable<ITicket> {
+    const token = localStorage.getItem('token');		
+    const headers = new HttpHeaders({
+			'Access-Control-Allow-Origin': '*',
+			Authorization: `${token}`,
+		});
+
+    return this.httpClient.delete<ITicket>(`${this.endpoint}/data/ticket/${id}`, { headers });
+  }
 }
